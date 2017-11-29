@@ -47,8 +47,8 @@ states = [
 end
 
 trips = Trip.all
-
-puts "--------- SEED RESULTS ---------"
+puts Cowsay.say("SEED RESULTS", :ghostbusters)
+puts "---------------------------------------------------------------------"
 puts "Created #{users.count} users"
 puts "Created #{trips.count} trips"
 puts "Log in with super_user. email: #{super_user.email} password: #{PASSWORD}"

@@ -5,22 +5,22 @@ class Trip < ApplicationRecord
   include AASM 
 
     aasm whiny_transitions: false do
-        state :pending, initial: true 
-        state :published
-        state :in_progress
-        state :completed
+      state :pending, initial: true 
+      state :published
+      state :in_progress
+      state :completed
 
-        event :publish do 
+      event :publish do 
         transitions from: :pending, to: :published
-        end 
+      end 
 
-        event :mark_in_progress do 
+      event :mark_in_progress do 
         transitions from: :published, to: :in_progress
-        end
+      end
 
-        event :archive do 
+      event :archive do 
         transitions from: [:published, :in_progress], to: :completed
-        end 
+      end 
 
     end
 end
