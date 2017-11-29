@@ -4,6 +4,7 @@ class TripsController < ApplicationController
   
   def index
     @trips = Trip.all
+    @trips = Trip.where(aasm_state: [:published, :in_progress]).order(created_at: :desc)
 
     render json: @trips
   end
@@ -26,10 +27,14 @@ class TripsController < ApplicationController
   end
 
   def update
-    if @trip.update(trip_params)
-      render json: @trip
+    trip = Trip.find params[:id]
+    if params.include?("aasm_state")
+      trip.publish!
+      render json: trip
+    elsif (trip.user == current_user) && trip.update(trip_params)
+      render json: trip
     else
-      render json: @trip.errors, status: :unprocessable_entity
+      render json: { errors: trip.errors.full_messages}
     end
   end
 
@@ -43,6 +48,6 @@ class TripsController < ApplicationController
     end
 
     def trip_params
-      params.require(:trip).permit(:title, :description, :location, :start_date, :end_date, :duration, :user_id)
+      params.require(:trip).permit(:title, :description, :location, :start_date, :end_date, :duration, :user_id, :aasm_state)
     end
 end

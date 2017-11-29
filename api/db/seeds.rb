@@ -23,7 +23,14 @@ end
 
 users = User.all
 
-10.times.each do
+states = [
+  'pending',
+  'published',
+  'in_progress',
+  'completed'
+]
+
+15.times.each do
     start_date = Faker::Time.between(DateTime.now - 10, DateTime.now)
     end_date = Faker::Time.between(DateTime.now, DateTime.now + 10)
     duration = (end_date.to_date - start_date.to_date).to_i
@@ -35,6 +42,7 @@ users = User.all
         start_date: start_date,
         end_date: end_date,
         duration: duration,
+        aasm_state: states.sample
     )
 end
 
@@ -43,5 +51,4 @@ trips = Trip.all
 puts "--------- SEED RESULTS ---------"
 puts "Created #{users.count} users"
 puts "Created #{trips.count} trips"
-# puts "Created #{bids.count} bids"
 puts "Log in with super_user. email: #{super_user.email} password: #{PASSWORD}"
