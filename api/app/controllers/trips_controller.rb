@@ -1,18 +1,22 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :update, :destroy]
 
+  
   def index
     @trips = Trip.all
 
     render json: @trips
   end
 
+  
   def show
     render json: @trip
   end
 
+ 
   def create
     @trip = Trip.new(trip_params)
+    @trip.user = current_user
 
     if @trip.save
       render json: @trip, status: :created, location: @trip
@@ -39,6 +43,6 @@ class TripsController < ApplicationController
     end
 
     def trip_params
-      params.require(:trip).permit(:title, :description, :location, :start_date, :end_date, :days)
+      params.require(:trip).permit(:title, :description, :location, :start_date, :end_date, :duration, :user_id)
     end
 end

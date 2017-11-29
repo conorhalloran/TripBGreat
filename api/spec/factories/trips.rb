@@ -5,6 +5,7 @@ FactoryBot.define do
     location "MyString"
     start_date "MyString"
     end_date "MyString"
-    days "MyString"
+    duration 1
+    user nil
   end
 end
