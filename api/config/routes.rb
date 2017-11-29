@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create] do
     delete :destroy, on: :collection
   end
+  resources :tokens, only: [:create]
 
   root "trips#index"
 end
