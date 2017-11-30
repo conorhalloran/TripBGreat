@@ -77,9 +77,10 @@ class App extends Component {
         <div className="App">
           {this._renderNavBar()}
           <Switch>
-            <AuthRoute isAuthenticated={this.isSignedIn()} path="/trips/:id/edit" component={TripsEditPage} user={this.state.user} />
             <AuthRoute isAuthenticated={this.isSignedIn()} path="/trips/new" component={TripsNewPage} />
+            <AuthRoute isAuthenticated={this.isSignedIn()} path="/trips/:id/edit" component={TripsEditPage} user={this.state.user} />
             <AuthRoute isAuthenticated={this.isSignedIn()} path="/trips/:id" component={TripsShowPage} user={this.state.user} />
+
             <Route path="/trips" component={TripsIndexPage} />
             <Route path="/sign_in" render={props => <SignInPage {...props} onSignIn={this.signIn} />} />
           </Switch>

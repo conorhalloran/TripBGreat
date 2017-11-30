@@ -7,7 +7,7 @@ class TripForm extends React.Component {
   constructor(props) {
     super(props);
 
-    //INITIAL STATE
+    // INITIAL STATE
     this.state = {
       title: "",
       description: "",
@@ -33,7 +33,7 @@ class TripForm extends React.Component {
   };
 
   render() {
-    const { title, description, start_date, end_date, location, duration } = this.state;
+    const { title = "", description = "", start_date = "", end_date = "", location = "", duration = "" } = this.props;
 
     return (
       <form className="TripForm" onSubmit={this.handleSubmit}>
@@ -46,6 +46,7 @@ class TripForm extends React.Component {
           <textarea id="description" name="description" defaultValue={description} />
         </div>
         <DateRangePicker
+          displayFormat={"DD-MM-YYYY"}
           startDate={this.state.startDate}
           endDate={this.state.endDate}
           onDatesChange={({ startDate, endDate }) => {

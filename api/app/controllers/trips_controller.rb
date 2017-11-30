@@ -17,6 +17,7 @@ class TripsController < ApplicationController
   def create
     trip = Trip.new(trip_params)
     trip.user = current_user
+    
 
     if trip.save
       render json: trip
