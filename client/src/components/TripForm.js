@@ -1,6 +1,5 @@
 import React from "react";
 import { DateRangePicker } from "react-dates";
-import { log } from "core-js/library/web/timers";
 
 // const TripForm = (props) => {
 class TripForm extends React.Component {
@@ -33,7 +32,7 @@ class TripForm extends React.Component {
   };
 
   render() {
-    const { title = "", description = "", start_date = "", end_date = "", location = "", duration = "" } = this.props;
+    const { title = "", description = "", location = "" } = this.props;
 
     return (
       <form className="TripForm" onSubmit={this.handleSubmit}>
