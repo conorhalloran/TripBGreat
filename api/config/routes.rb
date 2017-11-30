@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
-  resources :trips
+
+  scope module: :v1, constraints: ApiVersion.new('v1', true) do
+    resources :trips
+    resources :users, only: [:new, :create]
+    resources :sessions, only: [:new, :create] do
+      delete :destroy, on: :collection
+    end
+    resources :tokens, only: [:create]
+  end
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :users, only: [:new, :create]
-  resources :sessions, only: [:new, :create] do
-    delete :destroy, on: :collection
-  end
-  resources :tokens, only: [:create]
+  
 
   root "trips#index"
 end
