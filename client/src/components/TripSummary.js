@@ -6,7 +6,7 @@ function TripSummary(props) {
   return (
     <div className="TripSummary">
       <p>
-        <Link to={`trips/${id}`}>{title}</Link>, By: {user}. Status: {aasm_state} • Trip Start Date : {start_date} • Duration : {duration}
+        <Link to={`trips/${id}`}>{title}</Link>, By: {user}. Status: {aasm_state} • Trip Start Date : {start_date} • Duration : {duration} Days
       </p>
     </div>
   );

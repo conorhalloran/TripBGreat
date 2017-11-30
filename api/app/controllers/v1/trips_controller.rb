@@ -16,9 +16,9 @@ module V1
 
   
     def create
+      # byebug
       trip = Trip.new(trip_params)
       trip.user = current_user
-      
 
       if trip.save
         render json: trip
