@@ -1,47 +1,39 @@
-import React, { Component } from 'react'
-import { Trip } from '../lib/requests'
+import React, { Component } from "react";
+import { Trip } from "../lib/requests";
 
-import TripDetails from '../containers/TripDetails'
+import TripDetails from "../containers/TripDetails";
 
 class TripsShowPage extends Component {
-    constructor (props) {
-        super(props)
+  constructor(props) {
+    super(props);
 
-        this.state = {
-        trip: {}
-        }
+    this.state = {
+      trip: {}
+    };
 
-        this.updateAASM = this.updateAASM.bind(this)
-    }
+    this.updateAASM = this.updateAASM.bind(this);
+  }
 
-    async componentDidMount () {
-        const { params } = this.props.match
-        const data = await Trip.get(params.id)
-        this.setState({trip: data})
-    }
+  async componentDidMount() {
+    const { params } = this.props.match;
+    const data = await Trip.get(params.id);
+    this.setState({ trip: data });
+  }
 
-    async updateAASM (trip) {
-        const params = {aasm_state: 'publish'}
-        const data = await Trip.update(params, this.state.trip.id)
-        this.setState({trip: data})
-    }
+  async updateAASM(trip) {
+    const params = { aasm_state: "publish" };
+    const data = await Trip.update(params, this.state.trip.id);
+    this.setState({ trip: data });
+  }
 
-    render () {
-        const { user = {} } = this.props
-        console.log(user, "show")
-        console.log(this.state.trip, "trip")
-        return (
-        <div className="TripsShowPage">
-            <TripDetails
-            current_user={user}
-            user={this.state.trip.user}
-            trip={this.state.trip}
-            updateAASM={this.updateAASM}
-            {...this.props}
-            />
-        </div>
-        )
-    }
+  render() {
+    const { user = {} } = this.props;
+    return (
+      <div className="TripsShowPage">
+        <TripDetails current_user={user} user={this.state.trip.user} trip={this.state.trip} updateAASM={this.updateAASM} {...this.props} />
+      </div>
+    );
+  }
 }
 
-export default TripsShowPage
+export default TripsShowPage;
