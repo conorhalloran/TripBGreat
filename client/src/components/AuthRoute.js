@@ -9,7 +9,7 @@ const AuthRoute = (props) => {
 		...restProps
 	} = props;
 
-	console.log(restProps);
+	// console.log(restProps);
 
 	return (
 		<Route {...restProps}
