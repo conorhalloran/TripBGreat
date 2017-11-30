@@ -9,11 +9,13 @@ function TripSummary (props) {
 		user,
 		aasm_state
 	} = props.trip;
+	// console.log(props)
+	console.log(user)
 	// const current_user = props.user;
 	return (
 		<div className="TripSummary">
 			<p>
-				<Link to={`trips/${id}`}>{title}</Link>, By: {user.first_name}. Status: {aasm_state} • Trip Start Date : {start_date}
+				<Link to={`trips/${id}`}>{title}</Link>, By: {user}. Status: {aasm_state} • Trip Start Date : {start_date}
 			</p>
 		</div>
 	);

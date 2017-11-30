@@ -12,6 +12,58 @@ export const Trip = {
     )
     const data = await res.json()
     return data
+  },
+  async get (id) {
+    const res = await fetch(
+      `${BASE_URL}/trips/${id}`,
+      { headers: { 'AUTHORIZATION': `jwt ${getJWT()}` }}
+    )
+    const data = await res.json()
+    return data
+  },
+  async create (params) {
+    const res = await fetch(
+      `${BASE_URL}/trips`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'AUTHORIZATION': `jwt ${getJWT()}`
+        },
+        body: JSON.stringify(params)
+      }
+    )
+    const data = await res.json()
+    return data
+  },
+  async update (params, id) {
+    const res = await fetch(
+      `${BASE_URL}/trips/${id}`,
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'AUTHORIZATION': `jwt ${getJWT()}`
+        },
+        body: JSON.stringify(params)
+      }
+    )
+    const data = await res.json()
+    return data
+  },
+  async destroy (id) {
+    const res = await fetch(
+      `${BASE_URL}/trips/${id}`,
+      {
+        method: 'delete',
+        headers: {
+          'Content-Type': 'application/json',
+          'AUTHORIZATION': `jwt ${getJWT()}`
+        }
+      }
+    )
+    const data = await res.json()
+    return data
   }
 };
 
