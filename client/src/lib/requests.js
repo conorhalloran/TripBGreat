@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000";
+import ApiRoutes from "./apiRoutes";
 
 const getJWT = () => {
   return localStorage.getItem("jwt");
@@ -6,17 +6,17 @@ const getJWT = () => {
 
 export const Trip = {
   async getAll() {
-    const res = await fetch(`${BASE_URL}/trips`, { headers: { AUTHORIZATION: `JWT ${getJWT()}` } });
+    const res = await fetch(`${ApiRoutes.baseUrl}/trips`, { headers: { AUTHORIZATION: `JWT ${getJWT()}` } });
     const data = await res.json();
     return data;
   },
   async get(id) {
-    const res = await fetch(`${BASE_URL}/trips/${id}`, { headers: { AUTHORIZATION: `jwt ${getJWT()}` } });
+    const res = await fetch(`${ApiRoutes.baseUrl}/trips/${id}`, { headers: { AUTHORIZATION: `jwt ${getJWT()}` } });
     const data = await res.json();
     return data;
   },
   async create(params) {
-    const res = await fetch(`${BASE_URL}/trips`, {
+    const res = await fetch(`${ApiRoutes.baseUrl}/trips`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +28,7 @@ export const Trip = {
     return data;
   },
   async update(params, id) {
-    const res = await fetch(`${BASE_URL}/trips/${id}`, {
+    const res = await fetch(`${ApiRoutes.baseUrl}/trips/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -40,7 +40,7 @@ export const Trip = {
     return data;
   },
   async destroy(id) {
-    const res = await fetch(`${BASE_URL}/trips/${id}`, {
+    const res = await fetch(`${ApiRoutes.baseUrl}/trips/${id}`, {
       method: "delete",
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +54,7 @@ export const Trip = {
 
 export const Token = {
   async create(params) {
-    const res = await fetch(`${BASE_URL}/tokens`, {
+    const res = await fetch(`${ApiRoutes.baseUrl}/tokens`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

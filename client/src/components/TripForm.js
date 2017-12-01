@@ -1,7 +1,8 @@
 import React from "react";
 import { DateRangePicker } from "react-dates";
+import LocationSearch from "./LocationSearch";
+import { Trip } from "../lib/requests";
 
-// const TripForm = (props) => {
 class TripForm extends React.Component {
   constructor(props) {
     super(props);
@@ -14,9 +15,21 @@ class TripForm extends React.Component {
       endDate: null,
       location: "",
       duration: 0,
-      focusedInput: null
+      focusedInput: null,
+      tripLocation: null,
+      longitude: null,
+      latitude: null
     };
+    console.log(props);
   }
+
+  handlePlacesChanged = place => {
+    const { geometry: { location } } = place;
+    const latitude = location.lat();
+    const longitude = location.lng();
+    const tripLocation = place.formatted_address;
+    this.setState({ latitude: latitude, longitude: longitude, tripLocation: tripLocation.toString() });
+  };
 
   handleSubmit = event => {
     event.preventDefault();
@@ -27,7 +40,9 @@ class TripForm extends React.Component {
       description: formData.get("description"),
       start_date: formData.get("startDate"),
       end_date: formData.get("endDate"),
-      location: formData.get("location")
+      location: this.state.tripLocation,
+      latitude: this.state.latitude,
+      longitude: this.state.longitude
     });
   };
 
@@ -56,8 +71,9 @@ class TripForm extends React.Component {
         />
         <div>
           <label htmlFor="location">Location</label> <br />
-          <input id="location" name="location" defaultValue={location} />
+          <LocationSearch onPlacesChanged={this.handlePlacesChanged} defaultValue={location} />
         </div>
+
         <div>
           <input type="submit" value="Submit" />
         </div>
