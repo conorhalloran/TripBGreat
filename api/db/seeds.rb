@@ -29,7 +29,7 @@ states = [
   'in_progress',
   'completed'
 ]
-
+# days.ago.strftime(%d/%m/%Y)
 15.times.each do
     start_date = Faker::Time.between(DateTime.now - 10, DateTime.now)
     end_date = Faker::Time.between(DateTime.now, DateTime.now + 10)
@@ -38,8 +38,8 @@ states = [
         description: Faker::RickAndMorty.quote,
         user: users.sample,
         location: Faker::LordOfTheRings.location,
-        start_date: start_date,
-        end_date: end_date,
+        start_date: start_date.strftime("%d/%m/%Y"),
+        end_date: end_date.strftime("%d/%m/%Y"),
         aasm_state: states.sample
     )
 end
