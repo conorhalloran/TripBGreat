@@ -1,6 +1,7 @@
 class Trip < ApplicationRecord
   belongs_to :user
   validates :title, presence: true
+  before_save :set_duration
 
   include AASM 
 
@@ -22,5 +23,11 @@ class Trip < ApplicationRecord
         transitions from: [:published, :in_progress], to: :completed
       end 
 
+    end
+
+    private 
+
+    def set_duration
+      self.duration = (self.end_date.to_date - self.start_date.to_date).to_i
     end
 end
