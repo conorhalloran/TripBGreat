@@ -19,7 +19,6 @@ class TripForm extends React.Component {
       longitude: null,
       latitude: null
     };
-    console.log(props);
   }
 
   handlePlacesChanged = place => {

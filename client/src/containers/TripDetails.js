@@ -18,7 +18,6 @@ class TripDetails extends Component {
 
   render() {
     const { id, title, description, start_date, end_date, location, user = "", aasm_state = "", duration, longitude, latitude } = this.props.trip;
-    console.dir(this.props.trip);
     const { updateAASM, current_user } = this.props;
     return (
       <div className="TripDetails">
@@ -26,9 +25,6 @@ class TripDetails extends Component {
         <h2>{title}</h2>
         <p>{description}</p>
         <p>{location}</p>
-        <p>
-          {longitude} , {latitude}
-        </p>
         <p>
           <em>By : {this.props.trip.user}</em>
         </p>

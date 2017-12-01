@@ -28,7 +28,6 @@ class TripsShowPage extends Component {
 
   render() {
     const { user = {} } = this.props;
-    console.log(this.props);
     return (
       <div className="TripsShowPage">
         <TripDetails current_user={user} user={this.state.trip.user} trip={this.state.trip} updateAASM={this.updateAASM} {...this.props} />
