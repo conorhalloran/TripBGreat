@@ -51,7 +51,7 @@ module V1
     private
 
       def trip_params
-        params.require(:trip).permit(:title, :description, :location, :start_date, :end_date, :duration, :user_id, :aasm_state)
+        params.require(:trip).permit(:title, :description, :location, :start_date, :end_date, :duration, :user_id, :aasm_state, :latitude, :longitude)
       end
   end
 end
