@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
 import { Trip } from "../lib/requests";
+import MyMapComponent from "../components/MyMapComponent";
 
 class TripDetails extends Component {
   constructor(props) {
@@ -54,6 +54,7 @@ class TripDetails extends Component {
         ) : (
           <span />
         )}
+        <MyMapComponent />
       </div>
     );
   }

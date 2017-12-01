@@ -48,7 +48,6 @@ class TripForm extends React.Component {
 
   render() {
     const { title = "", description = "", location = "" } = this.props;
-
     return (
       <form className="TripForm" onSubmit={this.handleSubmit}>
         <div>
@@ -73,7 +72,6 @@ class TripForm extends React.Component {
           <label htmlFor="location">Location</label> <br />
           <LocationSearch onPlacesChanged={this.handlePlacesChanged} defaultValue={location} />
         </div>
-
         <div>
           <input type="submit" value="Submit" />
         </div>
