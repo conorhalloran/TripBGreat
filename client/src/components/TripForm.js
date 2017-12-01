@@ -1,7 +1,6 @@
 import React from "react";
 import { DateRangePicker } from "react-dates";
 import LocationSearch from "./LocationSearch";
-import { Trip } from "../lib/requests";
 
 class TripForm extends React.Component {
   constructor(props) {

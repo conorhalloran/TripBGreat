@@ -1,5 +1,5 @@
 class TripSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :location, :start_date, :end_date, :duration, :aasm_state, :user
+  attributes :id, :title, :description, :location, :start_date, :end_date, :duration, :aasm_state, :user, :longitude, :latitude
   belongs_to :user
 
   # def duration

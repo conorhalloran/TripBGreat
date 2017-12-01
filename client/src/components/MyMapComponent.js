@@ -12,8 +12,8 @@ const MyMapComponent = compose(
   withScriptjs,
   withGoogleMap
 )(props => (
-  <GoogleMap defaultZoom={8} defaultCenter={{ lat: -34.397, lng: 150.644 }}>
-    {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} onClick={props.onMarkerClick} />}
+  <GoogleMap defaultZoom={8} defaultCenter={{ lat: props.lat, lng: props.long }}>
+    {props.isMarkerShown && <Marker position={{ lat: props.lat, lng: props.long }} onClick={props.onMarkerClick} />}
   </GoogleMap>
 ));
 
@@ -38,7 +38,7 @@ class MyFancyComponent extends React.PureComponent {
   };
 
   render() {
-    return <MyMapComponent isMarkerShown={this.state.isMarkerShown} onMarkerClick={this.handleMarkerClick} />;
+    return <MyMapComponent lat={this.props.lat} long={this.props.long} isMarkerShown={this.state.isMarkerShown} onMarkerClick={this.handleMarkerClick} />;
   }
 }
-export default MyMapComponent;
+export default MyFancyComponent;

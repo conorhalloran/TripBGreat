@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Trip } from "../lib/requests";
-import MyMapComponent from "../components/MyMapComponent";
+import MyFancyComponent from "../components/MyMapComponent";
 
 class TripDetails extends Component {
   constructor(props) {
@@ -17,7 +17,8 @@ class TripDetails extends Component {
   }
 
   render() {
-    const { id, title, description, start_date, end_date, location, user = "", aasm_state = "", duration } = this.props.trip;
+    const { id, title, description, start_date, end_date, location, user = "", aasm_state = "", duration, longitude, latitude } = this.props.trip;
+    console.dir(this.props.trip);
     const { updateAASM, current_user } = this.props;
     return (
       <div className="TripDetails">
@@ -25,6 +26,9 @@ class TripDetails extends Component {
         <h2>{title}</h2>
         <p>{description}</p>
         <p>{location}</p>
+        <p>
+          {longitude} , {latitude}
+        </p>
         <p>
           <em>By : {this.props.trip.user}</em>
         </p>
@@ -54,7 +58,7 @@ class TripDetails extends Component {
         ) : (
           <span />
         )}
-        <MyMapComponent />
+        <MyFancyComponent lat={latitude} long={longitude} />
       </div>
     );
   }
