@@ -23,6 +23,24 @@ end
 
 users = User.all
 
+users.each do |user|
+    arr = users.ids
+    arr.delete_if{|i|i==user.id}
+    
+    rand(0..5).times.each do
+        usedId = arr.sample
+        arr.delete_if{|i|i==usedId}
+        user.friendships.push(
+            Friendship.create(
+                user_id: user,
+                friend_id: usedId,
+            )
+        )
+    end
+    user.save
+end
+
+
 states = [
   'pending',
   'published',

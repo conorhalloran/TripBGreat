@@ -2,7 +2,7 @@ module V1
   class TripsController < ApplicationController
     
     def index
-      @trips = Trip.all
+      @trips = Trip.all.order(created_at: :desc)
       # @trips = Trip.where(aasm_state: [:published, :in_progress]).order(created_at: :desc)
 
       render json: @trips

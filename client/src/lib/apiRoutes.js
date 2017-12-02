@@ -1,12 +1,12 @@
-const baseUrl = "http://localhost:3000";
+const baseUrl = 'http://localhost:3000'
 
 const Routes = {
-  baseUrl,
-  trips: {
-    update(id) {
-      `${baseUrl}/trips/${id}`;
-    }
-  }
-};
+	baseUrl,
+	trips: {
+		update(id) {
+			;`${baseUrl}/trips/${id}`
+		}
+	}
+}
 
-export default Routes;
+export default Routes
