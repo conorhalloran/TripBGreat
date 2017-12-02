@@ -1,5 +1,7 @@
 class User < ApplicationRecord
     has_many :trips
+    has_many :friendships
+    has_many :friends, through: :friendships, source: :user
 
     before_save { self.email = email.downcase }
     validates :first_name, presence: true
