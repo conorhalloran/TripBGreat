@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Trip } from '../lib/requests'
+import { Trip } from '../lib/tripRequests'
 import MapComponent from '../components/MyMapComponent'
 
 class TripDetails extends Component {

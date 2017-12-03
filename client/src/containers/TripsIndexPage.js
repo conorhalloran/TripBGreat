@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Trip } from '../lib/requests'
+import { Trip } from '../lib/tripRequests'
 
 import TripsList from './TripsList'
 

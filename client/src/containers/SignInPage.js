@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Token } from '../lib/requests'
+import { Token } from '../lib/tripRequests'
 import SignInForm from '../components/SignInForm'
 
 class SignInPage extends Component {
