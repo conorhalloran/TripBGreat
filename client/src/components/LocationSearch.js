@@ -1,5 +1,4 @@
 import React from 'react'
-import ApiRoutes from '../lib/apiRoutes'
 
 const { compose, withProps, lifecycle } = require('recompose')
 const { withScriptjs } = require('react-google-maps')

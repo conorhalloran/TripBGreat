@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function TripSummary(props) {
-	const { id, title, start_date, user, aasm_state, duration } = props.trip
+	const { id, title, start_date, user = {}, aasm_state, duration } = props.trip
+
 	return (
 		<div className="TripSummary">
 			<p>

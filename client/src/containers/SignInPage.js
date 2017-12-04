@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import { Token } from '../lib/tripRequests'
 import SignInForm from '../components/SignInForm'
+import { Token } from '../lib/tripRequests'
 
 class SignInPage extends Component {
 	constructor(props) {
 		super(props)
-
 		this.signInUser = this.signInUser.bind(this)
 	}
 
