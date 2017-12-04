@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   scope module: :v1, constraints: ApiVersion.new('v1', true) do
     resources :trips
-    resources :users, only: [:new, :create, :index, :show] do
+    resources :users, only: [ :create, :index, :show] do
       resources :friendships, shallow: true, only: [:new, :create, :index, :destroy]
     end
     resources :sessions, only: [:new, :create] do

@@ -13,6 +13,7 @@ import TripsNewPage from './TripsNewPage'
 import TripsEditPage from './TripsEditPage'
 import TripsShowPage from './TripsShowPage'
 import SignInPage from './SignInPage'
+import SignUpPage from './SignUpPage'
 
 // APP
 class App extends Component {
@@ -65,7 +66,10 @@ class App extends Component {
 						</Link>
 					</span>
 				) : (
-					<Link to="/sign_in">Sign In</Link>
+					<span className="flex-row">
+						<Link to="/sign_in">Sign In</Link>
+						<Link to="/sign_up">Sign Up</Link>
+					</span>
 				)}
 			</nav>
 		)
@@ -83,6 +87,7 @@ class App extends Component {
 
 						<Route path="/trips" component={TripsIndexPage} />
 						<Route path="/sign_in" render={props => <SignInPage {...props} onSignIn={this.signIn} />} />
+						<Route path="/sign_up" render={props => <SignUpPage {...props} onSignUp={this.signIn} />} />
 					</Switch>
 				</div>
 			</Router>
