@@ -1,24 +1,41 @@
 module V1
     class UsersController < ApplicationController
 
-        def new
-            @user = User.new
-        end
-        
         def create
-            @user = User.new user_params
-            if @user.save
-                session[:user_id] = @user.id
-            redirect_to root_path, notice: "Logged In!"
+            user = User.new user_params
+            user.password = params[:password]
+            if user.save
+            if user&.authenticate(params[:password])
+                render json: {
+                jwt: encode_token({
+                    id: user.id,
+                    full_name: user.full_name,
+                    email: user.email
+                })
+                }
             else
-                render :new
+                head :not_found
+            end
+            else
+            render json: { errors: user.errors.full_messages}
             end
         end
+        
         private
         
+        def encode_token(payload = {}, exp = 24.hours.from_now)
+            payload[:exp] = exp.to_i
+            JWT.encode(payload, Rails.application.secrets.secret_key_base)
+        end
+        
         def user_params
-            params.require(:user).permit(:first_name, :last_name, :email,
-            :password, :password_confirmation)
+            params.require(:user).permit(
+            :first_name,
+            :last_name,
+            :email,
+            :password,
+            :password_confirmation
+            )
         end
 
     end

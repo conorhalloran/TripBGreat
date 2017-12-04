@@ -69,3 +69,20 @@ export const Token = {
 		}
 	}
 }
+export const User = {
+	async create(params) {
+		const res = await fetch(`${ApiRoutes.baseUrl}/users`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(params)
+		})
+		if (res.status === 200) {
+			const data = await res.json()
+			return data
+		} else {
+			return { error: 'Not found' }
+		}
+	}
+}
