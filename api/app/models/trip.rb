@@ -1,6 +1,8 @@
 class Trip < ApplicationRecord
-  belongs_to :user
+  has_and_belongs_to_many :users
+  has_many :days, dependent: :destroy
   validates :title, presence: true
+  # validates :users, uniqueness: { scope: :user}
   before_save :set_duration
 
   include AASM 
