@@ -20,7 +20,7 @@ class TripDetails extends Component {
 	render() {
 		const { id, title, description, start_date, end_date, location, user = {}, aasm_state = '', duration, longitude, latitude } = this.props.trip
 		const { updateAASM, current_user } = this.props
-		console.log({ user })
+		console.log(this.props.trip)
 		return (
 			<Container className="container-fluid">
 				<Row className="TripDetails">
@@ -34,7 +34,9 @@ class TripDetails extends Component {
 						<p>{description}</p>
 						<p>{location}</p>
 						<p>
-							<em>By : {this.props.trip.user}</em>
+							<em>
+								By {user.first_name} {user.last_name}:
+							</em>
 						</p>
 						<p>
 							<strong>Start Date : </strong>
@@ -52,9 +54,17 @@ class TripDetails extends Component {
 								{aasm_state === 'published' ? <span> In Progress!</span> : <span />}
 								{aasm_state === 'pending' ? <span> Pending</span> : <span />}
 							</h3>
-							{aasm_state === 'pending' ? <Button onClick={updateAASM}>Start Trip</Button> : <span />}
+							{aasm_state === 'pending' ? (
+								<span>
+									<Button className="btn btn-outline-info" onClick={updateAASM}>
+										Start Trip
+									</Button>
+								</span>
+							) : (
+								<span />
+							)}
 						</div>
-						{user === current_user.full_name ? (
+						{user.id === current_user.id ? (
 							<div>
 								<Link className="btn btn-outline-info" to={`/trips/${id}/edit`}>
 									Edit

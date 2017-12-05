@@ -3,11 +3,10 @@ import TripSummary from '../components/TripSummary'
 
 class TripsList extends Component {
 	render() {
-		const { user = {} } = this.props
 		return (
 			<div className="TripsList">
 				<h1>Trips</h1>
-				{this.props.trips.map(trip => <TripSummary key={trip.id} trip={trip} user={user} {...this.props} />)}
+				{this.props.trips.map(trip => <TripSummary key={trip.id} trip={trip} user={this.props.user} {...this.props} />)}
 			</div>
 		)
 	}

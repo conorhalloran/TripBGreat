@@ -8,17 +8,19 @@ class TripsIndexPage extends Component {
 		super(props)
 
 		this.state = {
-			trips: []
+			trips: [],
+			user: {}
 		}
 	}
 
 	async componentDidMount() {
 		const trips = await Trip.getAll()
+		console.log(trips)
 		this.setState({ trips })
 	}
 
 	render() {
-		const { user = {} } = this.props
+		const { user } = this.props
 		return (
 			<div className="TripsIndexPage">
 				<TripsList user={user} trips={this.state.trips} {...this.props} />

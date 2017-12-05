@@ -1,5 +1,5 @@
 class TripSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :location, :start_date, :end_date, :duration, :aasm_state, :user, :longitude, :latitude
+  attributes :id, :title, :description, :location, :start_date, :end_date, :duration, :aasm_state, :user_id, :longitude, :latitude
   belongs_to :user
 
   # def duration
@@ -15,7 +15,10 @@ class TripSerializer < ActiveModel::Serializer
   # end
 
   def user
-    object.user.full_name
+    User.find_by(id: self.object.user_id)
   end
+  # def user
+  #   object.user_id.full_name
+  # end
   
 end

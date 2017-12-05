@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-    has_many :trips
+    has_many :trip_users
+    has_many :trips, through: :trip_users
+    
     has_many :friendships
     has_many :friends, through: :friendships, source: :user
 
