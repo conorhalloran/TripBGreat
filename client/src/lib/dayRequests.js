@@ -4,19 +4,14 @@ const getJWT = () => {
 	return localStorage.getItem('jwt')
 }
 
-export const Trip = {
-	async getAll() {
-		const res = await fetch(`${ApiRoutes.baseUrl}/trips`, { headers: { AUTHORIZATION: `JWT ${getJWT()}` } })
-		const data = await res.json()
-		return data
-	},
+export const Day = {
 	async get(id) {
-		const res = await fetch(`${ApiRoutes.baseUrl}/trips/${id}`, { headers: { AUTHORIZATION: `jwt ${getJWT()}` } })
+		const res = await fetch(`${ApiRoutes.baseUrl}/days/${id}`, { headers: { AUTHORIZATION: `jwt ${getJWT()}` } })
 		const data = await res.json()
 		return data
 	},
 	async create(params) {
-		const res = await fetch(`${ApiRoutes.baseUrl}/trips`, {
+		const res = await fetch(`${ApiRoutes.baseUrl}/:trip_id/days`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -28,7 +23,7 @@ export const Trip = {
 		return data
 	},
 	async update(params, id) {
-		const res = await fetch(`${ApiRoutes.baseUrl}/trips/${id}`, {
+		const res = await fetch(`${ApiRoutes.baseUrl}/days/${id}`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json',
@@ -40,7 +35,7 @@ export const Trip = {
 		return data
 	},
 	async destroy(id) {
-		const res = await fetch(`${ApiRoutes.baseUrl}/trips/${id}`, {
+		const res = await fetch(`${ApiRoutes.baseUrl}/days/${id}`, {
 			method: 'delete',
 			headers: {
 				'Content-Type': 'application/json',

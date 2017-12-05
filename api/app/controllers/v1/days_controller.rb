@@ -1,27 +1,31 @@
 module V1
   class DaysController < ApplicationController
-    before_action :set_day, only: [:show, :update, :destroy]
 
     # GET /days
     def index
-      @days = Day.all.order(created_at: :desc)
+      trip = Trip.find(params[:trip_id])
+      days = trip.days.all.order(date: :desc)
 
-      render json: @days
+      render json: days
     end
 
     # GET /days/1
     def show
-      render json: @day
+      day = Day.find(params[:id])
+      render json: day
     end
 
     # POST /days
     def create
-      @day = Day.new(day_params)
+      day = Day.new(day_params)
+      trip = Trip.find(params[:trip_id])
+      day.trip = trip
+      day.user = current_user
 
-      if @day.save
-        render json: @day, status: :created, location: @day
+      if day.save
+        render json: day, status: :created, location: day
       else
-        render json: @day.errors, status: :unprocessable_entity
+        render json: day.errors, status: :unprocessable_entity
       end
     end
 
@@ -41,9 +45,8 @@ module V1
 
     private
 
-      # Only allow a trusted parameter "white list" through.
-      def day_params
-        params.require(:day).permit(:title, :description, :date, :start_location, :start_latitude, :start_longitude, :end_location, :end_latitude, :end_longitude, :user_id, :trip_id)
-      end
+    def day_params
+      params.require(:day).permit(:title, :description, :date, :start_location, :start_latitude, :start_longitude, :end_location, :end_latitude, :end_longitude, :user_id, :trip_id)
+    end
   end
 end

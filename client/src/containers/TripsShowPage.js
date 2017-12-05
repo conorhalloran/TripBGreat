@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Trip } from '../lib/tripRequests'
 
-import TripDetails from '../containers/TripDetails'
+import TripDetails from './TripDetails'
 
 class TripsShowPage extends Component {
 	constructor(props) {

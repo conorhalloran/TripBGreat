@@ -1,6 +1,19 @@
 module V1
     class UsersController < ApplicationController
 
+        def index
+            users = User.all
+            render json: users
+        end
+
+        def show
+            users = User.all
+            user = User.find(params[:id]) 
+            trips = user.trips
+            friends = user.friends
+            render json: user
+        end
+
         def create
             user = User.new user_params
             user.password = params[:password]
