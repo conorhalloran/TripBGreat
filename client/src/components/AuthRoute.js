@@ -3,9 +3,7 @@ import { Route, Redirect } from 'react-router-dom'
 
 const AuthRoute = props => {
 	const { component: Component, isAuthenticated = false, user = {}, ...restProps } = props
-
-	// console.log(restProps);
-
+	console.log(isAuthenticated)
 	return (
 		<Route
 			{...restProps}

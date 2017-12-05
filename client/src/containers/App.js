@@ -6,6 +6,7 @@ import '../stylesheets/App.css'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
 import AuthRoute from '../components/AuthRoute'
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Container, Row, Col, Jumbotron, Button } from 'reactstrap'
 
 // PAGES
 import TripsIndexPage from './TripsIndexPage'
@@ -21,16 +22,25 @@ class App extends Component {
 		super(props)
 
 		this.state = {
-			user: {}
+			user: {},
+			isOpen: false,
+			dropdownOpen: false
 		}
 		this.signIn = this.signIn.bind(this)
 		this.signOut = this.signOut.bind(this)
+		this.toggle = this.toggle.bind(this)
 	}
 	componentDidMount() {
 		this.signIn()
 	}
 
 	//FUNCTIONS
+	toggle() {
+		this.setState({
+			isOpen: !this.state.isOpen,
+			dropdownOpen: !this.state.dropdownOpen
+		})
+	}
 	signIn() {
 		const jwt = localStorage.getItem('jwt')
 		if (jwt) {
@@ -49,39 +59,92 @@ class App extends Component {
 		this.setState({ user: {} })
 	}
 
+	_navUserSignedIn() {
+		return (
+			<Collapse isOpen={this.state.isOpen} navbar>
+				<Nav className="ml-auto" navbar>
+					<NavItem>
+						<Link className="nav-link" to="/">
+							Home
+						</Link>
+					</NavItem>
+					<NavItem>
+						<Link className="nav-link" to="/trips">
+							Trips
+						</Link>
+					</NavItem>
+					<NavItem>
+						<Link className="nav-link" to="/trips/new">
+							Create Trip
+						</Link>
+					</NavItem>
+					<NavItem>
+						<Link className="nav-link" to="#">
+							My Account
+						</Link>
+					</NavItem>
+					<NavItem>
+						<Link className="nav-link" to="/" onClick={this.signOut}>
+							Sign out
+						</Link>
+					</NavItem>
+				</Nav>
+			</Collapse>
+		)
+	}
+
+	_navNoUser() {
+		return (
+			<Collapse isOpen={this.state.isOpen} navbar>
+				<Nav className="ml-auto" navbar>
+					<NavItem>
+						<Link className="nav-link" to="/">
+							Home
+						</Link>
+					</NavItem>
+					<NavItem>
+						<Link className="nav-link" to="/trips">
+							Trips
+						</Link>
+					</NavItem>
+					<NavItem>
+						<Link className="nav-link" to="/sign_in">
+							Sign In
+						</Link>
+					</NavItem>
+					<NavItem>
+						<Link className="nav-link" to="/sign_up">
+							Sign Up
+						</Link>
+					</NavItem>
+				</Nav>
+			</Collapse>
+		)
+	}
+
 	_renderNavBar() {
 		return (
-			<nav>
-				<img src={logo} className="App-logo" alt="logo" />
-				<h1 className="App-title">TripBGreat</h1>
-				<Link to="/">Home</Link>
-				<Link to="/trips">Trips</Link>
-				{this.isSignedIn() ? (
-					<span className="flex-row">
-						Hello, {this.state.user.full_name}
-						&nbsp;
-						<Link to="/trips/new">New Trip</Link>
-						<Link to="/" onClick={this.signOut}>
-							Sign Out
-						</Link>
-					</span>
-				) : (
-					<span className="flex-row">
-						<Link to="/sign_in">Sign In</Link>
-						<Link to="/sign_up">Sign Up</Link>
-					</span>
-				)}
-			</nav>
+			<Navbar color="faded" light expand="sm">
+				<NavbarToggler onClick={this.toggle} />
+				<NavbarBrand href="/">
+					<img src={logo} alt="" /> TripBGreat
+				</NavbarBrand>
+				{this.isSignedIn() ? this._navUserSignedIn() : this._navNoUser()}
+			</Navbar>
 		)
 	}
 
 	render() {
+		console.log(this.state.user)
+		console.log(this.isSignedIn())
 		return (
 			<Router>
 				<div className="App">
 					{this._renderNavBar()}
+
 					<Switch>
 						<AuthRoute isAuthenticated={this.isSignedIn()} path="/trips/new" component={TripsNewPage} />
+						{/* <Route path="/trips/new" component={TripsNewPage} /> */}
 						<AuthRoute isAuthenticated={this.isSignedIn()} path="/trips/:id/edit" component={TripsEditPage} user={this.state.user} />
 						<AuthRoute isAuthenticated={this.isSignedIn()} path="/trips/:id" component={TripsShowPage} user={this.state.user} />
 
