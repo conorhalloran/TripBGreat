@@ -64,29 +64,29 @@ class App extends Component {
 			<Collapse isOpen={this.state.isOpen} navbar>
 				<Nav className="ml-auto" navbar>
 					<NavItem>
-						<NavLink className="nav-link" href="/">
+						<Link className="nav-link" to="/">
 							Home
-						</NavLink>
+						</Link>
 					</NavItem>
 					<NavItem>
-						<NavLink className="nav-link" href="/trips">
+						<Link className="nav-link" to="/trips">
 							Trips
-						</NavLink>
+						</Link>
 					</NavItem>
 					<NavItem>
-						<NavLink className="nav-link" href="/trips/new">
+						<Link className="nav-link" to="/trips/new">
 							Create Trip
-						</NavLink>
+						</Link>
 					</NavItem>
 					<NavItem>
-						<NavLink className="nav-link" href="#">
+						<Link className="nav-link" to="#">
 							My Account
-						</NavLink>
+						</Link>
 					</NavItem>
 					<NavItem>
-						<NavLink href="/" onClick={this.signOut}>
+						<Link className="nav-link" to="/" onClick={this.signOut}>
 							Sign out
-						</NavLink>
+						</Link>
 					</NavItem>
 				</Nav>
 			</Collapse>
@@ -98,24 +98,24 @@ class App extends Component {
 			<Collapse isOpen={this.state.isOpen} navbar>
 				<Nav className="ml-auto" navbar>
 					<NavItem>
-						<NavLink className="nav-link" href="/">
+						<Link className="nav-link" to="/">
 							Home
-						</NavLink>
+						</Link>
 					</NavItem>
 					<NavItem>
-						<NavLink className="nav-link" href="/trips">
+						<Link className="nav-link" to="/trips">
 							Trips
-						</NavLink>
+						</Link>
 					</NavItem>
 					<NavItem>
-						<NavLink className="nav-link" href="/sign_in">
+						<Link className="nav-link" to="/sign_in">
 							Sign In
-						</NavLink>
+						</Link>
 					</NavItem>
 					<NavItem>
-						<NavLink className="nav-link" href="/sign_up">
+						<Link className="nav-link" to="/sign_up">
 							Sign Up
-						</NavLink>
+						</Link>
 					</NavItem>
 				</Nav>
 			</Collapse>
@@ -135,10 +135,13 @@ class App extends Component {
 	}
 
 	render() {
+		console.log(this.state.user)
+		console.log(this.isSignedIn())
 		return (
 			<Router>
 				<div className="App">
 					{this._renderNavBar()}
+
 					<Switch>
 						<AuthRoute isAuthenticated={this.isSignedIn()} path="/trips/new" component={TripsNewPage} />
 						{/* <Route path="/trips/new" component={TripsNewPage} /> */}

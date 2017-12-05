@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Trip } from '../lib/tripRequests'
 import MapComponent from '../components/MyMapComponent'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { Container, Row, Col, Button } from 'reactstrap'
 
 class TripDetails extends Component {
@@ -21,14 +22,14 @@ class TripDetails extends Component {
 		const { updateAASM, current_user } = this.props
 		console.log({ user })
 		return (
-			<Container>
+			<Container className="container-fluid">
 				<Row className="TripDetails">
 					<Col>
 						<h1>Trip Details</h1>
 					</Col>
 				</Row>
 				<Row>
-					<Col>
+					<Col sm="5">
 						<h2>{title}</h2>
 						<p>{description}</p>
 						<p>{location}</p>
@@ -55,14 +56,18 @@ class TripDetails extends Component {
 						</div>
 						{user === current_user.full_name ? (
 							<div>
-								<Button href={`/trips/${id}/edit`}>Edit</Button>
-								<Button onClick={this.deleteTrip}>Delete</Button>
+								<Link className="btn btn-outline-info" to={`/trips/${id}/edit`}>
+									Edit
+								</Link>
+								<Link className="btn btn-outline-info" to={`/trips`} onClick={this.deleteTrip}>
+									Delete
+								</Link>
 							</div>
 						) : (
 							<span />
 						)}
 					</Col>
-					<Col>{latitude && longitude && <MapComponent lat={latitude} long={longitude} />}</Col>
+					<Col sm="7">{latitude && longitude && <MapComponent lat={latitude} long={longitude} />}</Col>
 				</Row>
 			</Container>
 		)
