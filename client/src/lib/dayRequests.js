@@ -67,11 +67,6 @@ export const Token = {
 		} else {
 			return { error: 'Not found' }
 		}
-	},
-	async get(id) {
-		const res = await fetch(`${ApiRoutes.baseUrl}/users/${id}`, { headers: { AUTHORIZATION: `jwt ${getJWT()}` } })
-		const data = await res.json()
-		return data
 	}
 }
 export const User = {

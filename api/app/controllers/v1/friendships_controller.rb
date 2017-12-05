@@ -3,8 +3,8 @@ module V1
 
     def index
       user = current_user
-      @friendships = user.friendships.all
-      render json: @friendships
+      friendships = user.friendships.all
+      render json: friendships
     end
 
     def show
