@@ -1,5 +1,7 @@
 class Trip < ApplicationRecord
-  has_and_belongs_to_many :users
+  belongs_to :user
+  has_many :trip_users
+  has_many :users, through: :trip_users
   has_many :days, dependent: :destroy
   validates :title, presence: true
   # validates :users, uniqueness: { scope: :user}

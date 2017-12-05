@@ -34,7 +34,9 @@ class TripDetails extends Component {
 						<p>{description}</p>
 						<p>{location}</p>
 						<p>
-							<em>By :</em>
+							<em>
+								By {user.first_name} {user.last_name}:
+							</em>
 						</p>
 						<p>
 							<strong>Start Date : </strong>
@@ -52,9 +54,17 @@ class TripDetails extends Component {
 								{aasm_state === 'published' ? <span> In Progress!</span> : <span />}
 								{aasm_state === 'pending' ? <span> Pending</span> : <span />}
 							</h3>
-							{aasm_state === 'pending' ? <Button onClick={updateAASM}>Start Trip</Button> : <span />}
+							{aasm_state === 'pending' ? (
+								<span>
+									<Button className="btn btn-outline-info" onClick={updateAASM}>
+										Start Trip
+									</Button>
+								</span>
+							) : (
+								<span />
+							)}
 						</div>
-						{user === current_user.full_name ? (
+						{user === current_user ? (
 							<div>
 								<Link className="btn btn-outline-info" to={`/trips/${id}/edit`}>
 									Edit

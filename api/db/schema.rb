@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203044651) do
+ActiveRecord::Schema.define(version: 20171205025640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 20171203044651) do
     t.index ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true
   end
 
+  create_table "trip_users", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "trip_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_trip_users_on_trip_id"
+    t.index ["user_id"], name: "index_trip_users_on_user_id"
+  end
+
   create_table "trips", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -56,11 +65,6 @@ ActiveRecord::Schema.define(version: 20171203044651) do
     t.index ["user_id"], name: "index_trips_on_user_id"
   end
 
-  create_table "trips_users", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "trip_id", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -73,5 +77,7 @@ ActiveRecord::Schema.define(version: 20171203044651) do
 
   add_foreign_key "days", "trips"
   add_foreign_key "days", "users"
+  add_foreign_key "trip_users", "trips"
+  add_foreign_key "trip_users", "users"
   add_foreign_key "trips", "users"
 end
