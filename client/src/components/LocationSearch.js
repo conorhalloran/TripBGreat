@@ -1,12 +1,16 @@
 import React from 'react'
+import { Input } from 'reactstrap'
 
 const { compose, withProps, lifecycle } = require('recompose')
 const { withScriptjs } = require('react-google-maps')
-const { StandaloneSearchBox } = require('react-google-maps/lib/components/places/StandaloneSearchBox')
+const {
+	StandaloneSearchBox
+} = require('react-google-maps/lib/components/places/StandaloneSearchBox')
 
 const LocationSearch = compose(
 	withProps({
-		googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBlu8Q6t2H35YrdXo8j7233c4p1sAZjuU0&v=3.exp&libraries=geometry,drawing,places',
+		googleMapURL:
+			'https://maps.googleapis.com/maps/api/js?key=AIzaSyBlu8Q6t2H35YrdXo8j7233c4p1sAZjuU0&v=3.exp&libraries=geometry,drawing,places',
 		loadingElement: <div style={{ height: `100%` }} />,
 		containerElement: <div style={{ height: `400px` }} />
 	}),
@@ -30,17 +34,21 @@ const LocationSearch = compose(
 	withScriptjs
 )(props => (
 	<div data-standalone-searchbox="">
-		<StandaloneSearchBox ref={props.onSearchBoxMounted} bounds={props.bounds} onPlacesChanged={props.onPlacesChanged}>
-			<input
+		<StandaloneSearchBox
+			ref={props.onSearchBoxMounted}
+			bounds={props.bounds}
+			onPlacesChanged={props.onPlacesChanged}
+		>
+			<Input
 				type="text"
 				placeholder="Search for Location"
 				style={{
 					boxSizing: `border-box`,
-					border: `1px solid transparent`,
-					width: `240px`,
+					border: `1px solid #ced4da`,
+					width: `100%`,
 					height: `32px`,
 					padding: `0 12px`,
-					borderRadius: `3px`,
+					borderRadius: `0.25rem`,
 					//   boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
 					fontSize: `14px`,
 					outline: `none`,

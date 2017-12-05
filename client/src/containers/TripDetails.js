@@ -48,7 +48,7 @@ class TripDetails extends Component {
 						<p>{location}</p>
 						<p>
 							<em>
-								By {user.first_name} {user.last_name}:
+								By: {user.first_name} {user.last_name}
 							</em>
 						</p>
 						<p>

@@ -6,25 +6,15 @@ const getJWT = () => {
 
 export const Day = {
 	async get(id) {
-		const res = await fetch(`${ApiRoutes.baseUrl}/days/${id}`, { headers: { AUTHORIZATION: `jwt ${getJWT()}` } })
-		const data = await res.json()
-		return data
-	},
-	async create(params) {
-		const res = await fetch(`${ApiRoutes.baseUrl}/:trip_id/days`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				AUTHORIZATION: `jwt ${getJWT()}`
-			},
-			body: JSON.stringify(params)
+		const res = await fetch(`${ApiRoutes.baseUrl}/days/${id}`, {
+			headers: { AUTHORIZATION: `jwt ${getJWT()}` }
 		})
 		const data = await res.json()
 		return data
 	},
-	async update(params, id) {
-		const res = await fetch(`${ApiRoutes.baseUrl}/days/${id}`, {
-			method: 'PATCH',
+	async create(params, trip_id) {
+		const res = await fetch(`${ApiRoutes.baseUrl}/trips/${trip_id}/bids`, {
+			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 				AUTHORIZATION: `jwt ${getJWT()}`
@@ -41,6 +31,18 @@ export const Day = {
 				'Content-Type': 'application/json',
 				AUTHORIZATION: `jwt ${getJWT()}`
 			}
+		})
+		const data = await res.json()
+		return data
+	},
+	async update(params, id) {
+		const res = await fetch(`${ApiRoutes.baseUrl}/days/${id}`, {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json',
+				AUTHORIZATION: `jwt ${getJWT()}`
+			},
+			body: JSON.stringify(params)
 		})
 		const data = await res.json()
 		return data
@@ -64,7 +66,9 @@ export const Token = {
 		}
 	},
 	async get(id) {
-		const res = await fetch(`${ApiRoutes.baseUrl}/users/${id}`, { headers: { AUTHORIZATION: `jwt ${getJWT()}` } })
+		const res = await fetch(`${ApiRoutes.baseUrl}/users/${id}`, {
+			headers: { AUTHORIZATION: `jwt ${getJWT()}` }
+		})
 		const data = await res.json()
 		return data
 	}
