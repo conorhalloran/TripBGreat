@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button, Col, Form, FormGroup, Label, Input } from 'reactstrap'
 
 const SignInForm = props => {
 	const { onSubmit = () => {} } = props
@@ -14,21 +15,20 @@ const SignInForm = props => {
 	}
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<div>
-				<label htmlFor="email">Email</label> <br />
-				<input type="email" id="email" name="email" />
-			</div>
+		<Col>
+			<Form onSubmit={handleSubmit}>
+				<FormGroup>
+					<Label htmlFor="email">Email</Label>
+					<Input type="email" id="email" name="email" />
+				</FormGroup>
 
-			<div>
-				<label htmlFor="password">Password</label> <br />
-				<input type="password" id="password" name="password" />
-			</div>
-
-			<div>
-				<input type="submit" value="Sign In" />
-			</div>
-		</form>
+				<FormGroup>
+					<Label htmlFor="password">Password</Label> <br />
+					<Input type="password" id="password" name="password" />
+				</FormGroup>
+				<Button className="btn btn-outline-info">Sign In</Button>
+			</Form>
+		</Col>
 	)
 }
 

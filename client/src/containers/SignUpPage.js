@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { User } from '../lib/tripRequests'
 import SignUpForm from '../components/SignUpForm'
+import { Container, Row } from 'reactstrap'
 
 class SignUpPage extends Component {
 	constructor(props) {
@@ -22,10 +23,14 @@ class SignUpPage extends Component {
 
 	render() {
 		return (
-			<div className="SignUpPage">
-				<h1>Sign Up</h1>
-				<SignUpForm onSubmit={this.signUpUser} />
-			</div>
+			<Container className="SignUpPage">
+				<Row>
+					<h1>Sign Up</h1>
+				</Row>
+				<Row>
+					<SignUpForm onSubmit={this.signUpUser} />
+				</Row>
+			</Container>
 		)
 	}
 }
