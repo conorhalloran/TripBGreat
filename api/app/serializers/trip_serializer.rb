@@ -15,7 +15,7 @@ class TripSerializer < ActiveModel::Serializer
   # end
 
   def user
-    object.user_id
+    User.find_by(id: self.object.user_id)
   end
   # def user
   #   object.user_id.full_name

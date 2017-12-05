@@ -4,7 +4,7 @@ module V1
 
     # GET /days
     def index
-      @days = Day.all
+      @days = Day.all.order(created_at: :desc)
 
       render json: @days
     end

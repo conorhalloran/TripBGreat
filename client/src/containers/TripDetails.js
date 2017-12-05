@@ -20,7 +20,7 @@ class TripDetails extends Component {
 	render() {
 		const { id, title, description, start_date, end_date, location, user = {}, aasm_state = '', duration, longitude, latitude } = this.props.trip
 		const { updateAASM, current_user } = this.props
-		console.log({ user })
+		console.log(this.props.trip)
 		return (
 			<Container className="container-fluid">
 				<Row className="TripDetails">
@@ -34,7 +34,7 @@ class TripDetails extends Component {
 						<p>{description}</p>
 						<p>{location}</p>
 						<p>
-							<em>By : {this.props.trip.user}</em>
+							<em>By :</em>
 						</p>
 						<p>
 							<strong>Start Date : </strong>

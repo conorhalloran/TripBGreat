@@ -16,7 +16,7 @@ module V1
 
   
     def create
-      # byebug
+      byebug
       trip = Trip.new(trip_params)
       trip.user_id = current_user
 
