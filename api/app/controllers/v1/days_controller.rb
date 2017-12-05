@@ -4,9 +4,10 @@ module V1
 
     # GET /days
     def index
-      @days = Day.all.order(created_at: :desc)
+      trip = Trip.find(params[:trip_id])
+      days = trip.days.all.order(date: :desc)
 
-      render json: @days
+      render json: days
     end
 
     # GET /days/1
@@ -16,12 +17,15 @@ module V1
 
     # POST /days
     def create
-      @day = Day.new(day_params)
+      day = Day.new(day_params)
+      trip = Trip.find(params[:trip_id])
+      day.trip = trip
+      day.user = current_user
 
-      if @day.save
-        render json: @day, status: :created, location: @day
+      if day.save
+        render json: day, status: :created, location: day
       else
-        render json: @day.errors, status: :unprocessable_entity
+        render json: day.errors, status: :unprocessable_entity
       end
     end
 
