@@ -4,10 +4,9 @@ import 'react-dates/lib/css/_datepicker.css'
 import logo from '../logo.svg'
 import '../stylesheets/App.css'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Container, Row, Col, Jumbotron, Button } from 'reactstrap'
-
 import jwtDecode from 'jwt-decode'
 import AuthRoute from '../components/AuthRoute'
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Container, Row, Col, Jumbotron, Button } from 'reactstrap'
 
 // PAGES
 import TripsIndexPage from './TripsIndexPage'
@@ -85,7 +84,7 @@ class App extends Component {
 						</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink class="dropdown-item waves-effect waves-light" href="/" onClick={this.signOut}>
+						<NavLink href="/" onClick={this.signOut}>
 							Sign out
 						</NavLink>
 					</NavItem>
@@ -126,7 +125,7 @@ class App extends Component {
 	_renderNavBar() {
 		return (
 			<Navbar color="faded" light expand="sm">
-				<NavbarToggler right onClick={this.toggle} />
+				<NavbarToggler onClick={this.toggle} />
 				<NavbarBrand href="/">
 					<img src={logo} alt="" /> TripBGreat
 				</NavbarBrand>
