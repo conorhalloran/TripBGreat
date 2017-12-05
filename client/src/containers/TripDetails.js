@@ -3,6 +3,7 @@ import { Trip } from '../lib/tripRequests'
 import MapComponent from '../components/MyMapComponent'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { Container, Row, Col, Button } from 'reactstrap'
+import DaysList from './DaysList'
 
 class TripDetails extends Component {
 	constructor(props) {
@@ -18,9 +19,21 @@ class TripDetails extends Component {
 	}
 
 	render() {
-		const { id, title, description, start_date, end_date, location, user = {}, aasm_state = '', duration, longitude, latitude } = this.props.trip
+		const {
+			id = '',
+			title,
+			description,
+			start_date,
+			end_date,
+			location,
+			user = {},
+			aasm_state = '',
+			duration,
+			longitude,
+			latitude,
+			days = []
+		} = this.props.trip
 		const { updateAASM, current_user } = this.props
-		console.log(this.props.trip)
 		return (
 			<Container className="container-fluid">
 				<Row className="TripDetails">
@@ -50,8 +63,16 @@ class TripDetails extends Component {
 						<div>
 							<h3>
 								Status:
-								{aasm_state === 'completed' ? <span> Completed Trip!</span> : <span />}
-								{aasm_state === 'published' ? <span> In Progress!</span> : <span />}
+								{aasm_state === 'completed' ? (
+									<span> Completed Trip!</span>
+								) : (
+									<span />
+								)}
+								{aasm_state === 'published' ? (
+									<span> In Progress!</span>
+								) : (
+									<span />
+								)}
 								{aasm_state === 'pending' ? <span> Pending</span> : <span />}
 							</h3>
 							{aasm_state === 'pending' ? (
@@ -69,7 +90,11 @@ class TripDetails extends Component {
 								<Link className="btn btn-outline-info" to={`/trips/${id}/edit`}>
 									Edit
 								</Link>
-								<Link className="btn btn-outline-info" to={`/trips`} onClick={this.deleteTrip}>
+								<Link
+									className="btn btn-outline-info"
+									to={`/trips`}
+									onClick={this.deleteTrip}
+								>
 									Delete
 								</Link>
 							</div>
@@ -77,7 +102,15 @@ class TripDetails extends Component {
 							<span />
 						)}
 					</Col>
-					<Col sm="7">{latitude && longitude && <MapComponent lat={latitude} long={longitude} />}</Col>
+					<Col sm="7">
+						{latitude &&
+							longitude && <MapComponent lat={latitude} long={longitude} />}
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+						<DaysList tripId={id} user={user} days={days} />
+					</Col>
 				</Row>
 			</Container>
 		)

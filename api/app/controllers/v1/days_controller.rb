@@ -1,6 +1,5 @@
 module V1
   class DaysController < ApplicationController
-    before_action :set_day, only: [:show, :update, :destroy]
 
     # GET /days
     def index
@@ -12,7 +11,8 @@ module V1
 
     # GET /days/1
     def show
-      render json: @day
+      day = Day.find(params[:id])
+      render json: day
     end
 
     # POST /days
@@ -45,9 +45,8 @@ module V1
 
     private
 
-      # Only allow a trusted parameter "white list" through.
-      def day_params
-        params.require(:day).permit(:title, :description, :date, :start_location, :start_latitude, :start_longitude, :end_location, :end_latitude, :end_longitude, :user_id, :trip_id)
-      end
+    def day_params
+      params.require(:day).permit(:title, :description, :date, :start_location, :start_latitude, :start_longitude, :end_location, :end_latitude, :end_longitude, :user_id, :trip_id)
+    end
   end
 end

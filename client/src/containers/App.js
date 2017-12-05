@@ -6,13 +6,27 @@ import '../stylesheets/App.css'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
 import AuthRoute from '../components/AuthRoute'
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Container, Row, Col, Jumbotron, Button } from 'reactstrap'
+import {
+	Collapse,
+	Navbar,
+	NavbarToggler,
+	NavbarBrand,
+	Nav,
+	NavItem,
+	NavLink,
+	Container,
+	Row,
+	Col,
+	Jumbotron,
+	Button
+} from 'reactstrap'
 
 // PAGES
 import TripsIndexPage from './TripsIndexPage'
 import TripsNewPage from './TripsNewPage'
 import TripsEditPage from './TripsEditPage'
 import TripsShowPage from './TripsShowPage'
+import DaysShowPage from './DaysShowPage'
 import SignInPage from './SignInPage'
 import SignUpPage from './SignUpPage'
 
@@ -141,14 +155,41 @@ class App extends Component {
 					{this._renderNavBar()}
 
 					<Switch>
-						<AuthRoute isAuthenticated={this.isSignedIn()} path="/trips/new" component={TripsNewPage} />
+						<AuthRoute
+							isAuthenticated={this.isSignedIn()}
+							path="/trips/new"
+							component={TripsNewPage}
+						/>
 						{/* <Route path="/trips/new" component={TripsNewPage} /> */}
-						<AuthRoute isAuthenticated={this.isSignedIn()} path="/trips/:id/edit" component={TripsEditPage} user={this.state.user} />
-						<AuthRoute isAuthenticated={this.isSignedIn()} path="/trips/:id" component={TripsShowPage} user={this.state.user} />
+						<AuthRoute
+							isAuthenticated={this.isSignedIn()}
+							path="/trips/:id/edit"
+							component={TripsEditPage}
+							user={this.state.user}
+						/>
+						<AuthRoute
+							isAuthenticated={this.isSignedIn()}
+							exact
+							path="/trips/:id"
+							component={TripsShowPage}
+							user={this.state.user}
+						/>
+						<AuthRoute
+							isAuthenticated={this.isSignedIn()}
+							path="/trips/:tripId/days/:id"
+							component={DaysShowPage}
+							user={this.state.user}
+						/>
 
 						<Route path="/trips" component={TripsIndexPage} />
-						<Route path="/sign_in" render={props => <SignInPage {...props} onSignIn={this.signIn} />} />
-						<Route path="/sign_up" render={props => <SignUpPage {...props} onSignUp={this.signIn} />} />
+						<Route
+							path="/sign_in"
+							render={props => <SignInPage {...props} onSignIn={this.signIn} />}
+						/>
+						<Route
+							path="/sign_up"
+							render={props => <SignUpPage {...props} onSignUp={this.signIn} />}
+						/>
 					</Switch>
 				</div>
 			</Router>
