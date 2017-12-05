@@ -64,7 +64,7 @@ class TripDetails extends Component {
 								<span />
 							)}
 						</div>
-						{user === current_user ? (
+						{user.id === current_user.id ? (
 							<div>
 								<Link className="btn btn-outline-info" to={`/trips/${id}/edit`}>
 									Edit

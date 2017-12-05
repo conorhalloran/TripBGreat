@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :days
   scope module: :v1, constraints: ApiVersion.new('v1', true) do
-    resources :trips, only: [:create, :index, :show, :destroy] do
+    resources :trips, only: [:create, :update, :index, :show, :destroy] do
       resources :days, shallow: true, only: [:create, :index, :show, :destroy]
     end
     resources :users, only: [:create, :index, :show] do
