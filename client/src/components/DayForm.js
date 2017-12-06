@@ -1,6 +1,6 @@
 import React from 'react'
-import { SingleDayPicker } from 'react-dates'
 import LocationSearch from './LocationSearch'
+// import { SingleDayPicker } from 'react-dates'
 import {
 	Button,
 	Container,
@@ -12,29 +12,21 @@ import {
 	Input
 } from 'reactstrap'
 
-class TripForm extends React.Component {
+class DayForm extends React.Component {
 	constructor(props) {
 		super(props)
 
-		// INITIAL STATE
 		this.state = {
-			title: '',
-			description: '',
-			startDate: null,
-			endDate: null,
-			location: '',
-			duration: 0,
-			focusedInput: null,
-			tripLocation: null,
-			tripLocationEnd: null,
+			startLocation: null,
 			startLongitude: null,
 			startLatitude: null,
-			longitudeEnd: null,
-			latitudeEnd: null
+			endLocation: null,
+			endLongitude: null,
+			endLatitude: null
 		}
 	}
 
-	handlePlacesChanged = place => {
+	startHandlePlacesChanged = place => {
 		const { geometry: { location } } = place
 		const latitude = location.lat()
 		const longitude = location.lng()
@@ -42,18 +34,18 @@ class TripForm extends React.Component {
 		this.setState({
 			startLatitude: latitude,
 			startLongitude: longitude,
-			tripLocation: tripLocation.toString()
+			startLocation: tripLocation.toString()
 		})
 	}
-	handlePlacesChangedEnd = place => {
+	endHandlePlacesChanged = place => {
 		const { geometry: { location } } = place
 		const latitude = location.lat()
 		const longitude = location.lng()
 		const tripLocation = place.formatted_address
 		this.setState({
-			latitudeEnd: latitude,
-			longitudeEnd: longitude,
-			tripLocationEnd: tripLocation.toString()
+			endLatitude: latitude,
+			endLongitude: longitude,
+			endLocation: tripLocation.toString()
 		})
 	}
 
@@ -61,14 +53,15 @@ class TripForm extends React.Component {
 		event.preventDefault()
 		const { currentTarget } = event
 		const formData = new FormData(currentTarget)
-		this.props.onSubmit({
+		this.props.createDay({
 			title: formData.get('title'),
 			description: formData.get('description'),
-			start_date: formData.get('startDate'),
-			end_date: formData.get('endDate'),
-			location: this.state.tripLocation,
-			latitude: this.state.latitude,
-			longitude: this.state.longitude
+			start_location: this.state.startLocation,
+			start_latitude: this.state.startLatitude,
+			start_longitude: this.state.startLongitude,
+			end_location: this.state.endLocation,
+			end_latitude: this.state.endLatitude,
+			end_longitude: this.state.endLongitude
 		})
 	}
 
@@ -92,7 +85,7 @@ class TripForm extends React.Component {
 									defaultValue={description}
 								/>
 							</FormGroup>
-							<FormGroup>
+							{/* <FormGroup>
 								<Label for="dates">Trip Dates: </Label>
 								<SingleDayPicker
 									displayFormat={'DD-MM-YYYY'}
@@ -106,22 +99,22 @@ class TripForm extends React.Component {
 										this.setState({ focusedInput })
 									}
 								/>
-							</FormGroup>
+							</FormGroup> */}
 							<FormGroup>
 								<Label for="startLocation">Start Location</Label>
 								<LocationSearch
-									onPlacesChanged={this.handlePlacesChanged}
+									onPlacesChanged={this.startHandlePlacesChanged}
 									defaultValue={location}
 								/>
 							</FormGroup>
 							<FormGroup>
 								<Label for="endLocation">End Location</Label>
 								<LocationSearch
-									onPlacesChanged={this.handlePlacesChangedEnd}
+									onPlacesChanged={this.endHandlePlacesChanged}
 									defaultValue={location}
 								/>
 							</FormGroup>
-							<Button className="btn btn-outline-info">Create Trip</Button>
+							<Button className="btn btn-outline-info">Create Day</Button>
 						</Form>
 					</Col>
 				</Row>
@@ -130,4 +123,4 @@ class TripForm extends React.Component {
 	}
 }
 
-export default TripForm
+export default DayForm

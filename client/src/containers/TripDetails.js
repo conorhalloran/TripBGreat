@@ -4,7 +4,8 @@ import MapComponent from '../components/MyMapComponent'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { Container, Row, Col, Button } from 'reactstrap'
 import DaysList from './DaysList'
-import DayFormBasic from '../components/DayFormBasic'
+// import DayFormBasic from '../components/DayFormBasic'
+import DayForm from '../components/DayForm'
 
 class TripDetails extends Component {
 	constructor(props) {
@@ -114,7 +115,7 @@ class TripDetails extends Component {
 							<div>
 								<hr />
 								<h4>Add Days to Your Trip</h4>
-								<DayFormBasic createDay={createDay} {...this.props} />
+								<DayForm createDay={createDay} {...this.props} />
 							</div>
 						) : (
 							<span />

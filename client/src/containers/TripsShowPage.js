@@ -8,7 +8,13 @@ class TripsShowPage extends Component {
 		super(props)
 
 		this.state = {
-			trip: {}
+			trip: {},
+			startLocation: null,
+			startLongitude: null,
+			startLatitude: null,
+			endLocation: null,
+			endLongitude: null,
+			endLatitude: null
 		}
 
 		this.updateAASM = this.updateAASM.bind(this)
