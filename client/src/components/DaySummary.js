@@ -5,23 +5,16 @@ import { Container, Row, Col } from 'reactstrap'
 function DaySummary(props) {
 	const { id, title, description } = props.day
 	const { tripId } = props
-	console.log(props, 'DaySummary')
 
 	return (
-		<div className="DaySummary">
-			<Container>
-				<Row>
-					<Col>
-						<Link to={`/trips/${tripId}/days/${id}`}>{title}</Link>
-					</Col>
-				</Row>
-				<Row>
-					<Col>
-						<p>{description}</p>
-					</Col>
-				</Row>
-			</Container>
-		</div>
+		<Row>
+			<li className="DaySummary">
+				<Col>
+					<Link to={`/trips/${tripId}/days/${id}`}>{title}</Link>
+					<p>{description}</p>
+				</Col>
+			</li>
+		</Row>
 	)
 }
 

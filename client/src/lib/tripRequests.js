@@ -56,6 +56,58 @@ export const Trip = {
 	}
 }
 
+export const Day = {
+	async getAll(trip_id) {
+		const res = await fetch(`${ApiRoutes.baseUrl}/trips/${trip_id}/days`, {
+			headers: { AUTHORIZATION: `jwt ${getJWT()}` }
+		})
+		const data = await res.json()
+		return data
+	},
+	async get(id) {
+		const res = await fetch(`${ApiRoutes.baseUrl}/days/${id}`, {
+			headers: { AUTHORIZATION: `jwt ${getJWT()}` }
+		})
+		const data = await res.json()
+		return data
+	},
+	async create(params, trip_id) {
+		const res = await fetch(`${ApiRoutes.baseUrl}/trips/${trip_id}/days`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				AUTHORIZATION: `jwt ${getJWT()}`
+			},
+			body: JSON.stringify(params)
+		})
+		const data = await res.json()
+		return data
+	},
+	async destroy(id) {
+		const res = await fetch(`${ApiRoutes.baseUrl}/days/${id}`, {
+			method: 'delete',
+			headers: {
+				'Content-Type': 'application/json',
+				AUTHORIZATION: `jwt ${getJWT()}`
+			}
+		})
+		const data = await res.json()
+		return data
+	},
+	async update(params, id) {
+		const res = await fetch(`${ApiRoutes.baseUrl}/days/${id}`, {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json',
+				AUTHORIZATION: `jwt ${getJWT()}`
+			},
+			body: JSON.stringify(params)
+		})
+		const data = await res.json()
+		return data
+	}
+}
+
 export const Token = {
 	async create(params) {
 		const res = await fetch(`${ApiRoutes.baseUrl}/tokens`, {

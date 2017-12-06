@@ -94,7 +94,7 @@ class TripForm extends React.Component {
 								/>
 							</FormGroup>
 							<FormGroup>
-								<Label htmlFor="location">Location</Label>
+								<Label for="location">Location</Label>
 								<LocationSearch
 									onPlacesChanged={this.handlePlacesChanged}
 									defaultValue={location}

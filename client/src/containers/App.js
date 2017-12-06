@@ -12,13 +12,7 @@ import {
 	NavbarToggler,
 	NavbarBrand,
 	Nav,
-	NavItem,
-	NavLink,
-	Container,
-	Row,
-	Col,
-	Jumbotron,
-	Button
+	NavItem
 } from 'reactstrap'
 
 // PAGES
@@ -161,7 +155,6 @@ class App extends Component {
 							path="/trips/new"
 							component={TripsNewPage}
 						/>
-						{/* <Route path="/trips/new" component={TripsNewPage} /> */}
 						<AuthRoute
 							isAuthenticated={this.isSignedIn()}
 							path="/trips/:id/edit"

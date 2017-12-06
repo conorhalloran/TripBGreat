@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import TripSummary from '../components/TripSummary'
-import { Container, Row, Col, Button } from 'reactstrap'
+import { Container, Row } from 'reactstrap'
 
 class TripsList extends Component {
 	render() {
