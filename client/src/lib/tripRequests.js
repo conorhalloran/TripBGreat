@@ -6,12 +6,16 @@ const getJWT = () => {
 
 export const Trip = {
 	async getAll() {
-		const res = await fetch(`${ApiRoutes.baseUrl}/trips`, { headers: { AUTHORIZATION: `JWT ${getJWT()}` } })
+		const res = await fetch(`${ApiRoutes.baseUrl}/trips`, {
+			headers: { AUTHORIZATION: `JWT ${getJWT()}` }
+		})
 		const data = await res.json()
 		return data
 	},
 	async get(id) {
-		const res = await fetch(`${ApiRoutes.baseUrl}/trips/${id}`, { headers: { AUTHORIZATION: `jwt ${getJWT()}` } })
+		const res = await fetch(`${ApiRoutes.baseUrl}/trips/${id}`, {
+			headers: { AUTHORIZATION: `jwt ${getJWT()}` }
+		})
 		const data = await res.json()
 		return data
 	},
@@ -69,7 +73,9 @@ export const Token = {
 		}
 	},
 	async get(id) {
-		const res = await fetch(`${ApiRoutes.baseUrl}/users/${id}`, { headers: { AUTHORIZATION: `jwt ${getJWT()}` } })
+		const res = await fetch(`${ApiRoutes.baseUrl}/users/${id}`, {
+			headers: { AUTHORIZATION: `jwt ${getJWT()}` }
+		})
 		const data = await res.json()
 		return data
 	}
