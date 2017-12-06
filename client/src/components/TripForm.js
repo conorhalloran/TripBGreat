@@ -9,8 +9,7 @@ import {
 	Form,
 	FormGroup,
 	Label,
-	Input,
-	FormText
+	Input
 } from 'reactstrap'
 
 class TripForm extends React.Component {

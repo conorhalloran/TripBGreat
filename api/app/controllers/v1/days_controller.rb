@@ -4,7 +4,7 @@ module V1
     # GET /days
     def index
       trip = Trip.find(params[:trip_id])
-      days = trip.days.all.order(date: :desc)
+      days = trip.days.all.order(id: :desc)
 
       render json: days
     end

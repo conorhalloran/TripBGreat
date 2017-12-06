@@ -11,7 +11,7 @@ function TripSummary(props) {
 			<p>
 				By: {user.first_name} {user.last_name}
 				<br />
-				Status: {aasm_state} • Start Date : {start_date} • Duration : {duration}
+				Status: {aasm_state} • Start Date : {start_date} • Duration : {duration}{' '}
 				Days
 			</p>
 		</Col>
