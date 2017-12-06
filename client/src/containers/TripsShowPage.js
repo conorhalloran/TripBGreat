@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Trip } from '../lib/tripRequests'
+import { Trip, Day } from '../lib/tripRequests'
 
 import TripDetails from './TripDetails'
 
@@ -12,6 +12,8 @@ class TripsShowPage extends Component {
 		}
 
 		this.updateAASM = this.updateAASM.bind(this)
+		this.createDay = this.createDay.bind(this)
+		this.deleteDay = this.deleteDay.bind(this)
 	}
 
 	async componentDidMount() {
@@ -26,11 +28,31 @@ class TripsShowPage extends Component {
 		this.setState({ trip: data })
 	}
 
+	async createDay(day) {
+		const data = await Day.create(day, this.state.trip.id)
+		data.errors
+			? this.props.history.push(`/trips`)
+			: this.setState({ trip: data })
+	}
+
+	async deleteDay(day_id) {
+		const data = await Day.destroy(day_id)
+		this.setState({ trip: data })
+	}
+
 	render() {
 		const { user = {} } = this.props
 		return (
 			<div className="TripsShowPage">
-				<TripDetails current_user={user} user={this.state.trip.user} trip={this.state.trip} updateAASM={this.updateAASM} {...this.props} />
+				<TripDetails
+					current_user={user}
+					user={this.state.trip.user}
+					trip={this.state.trip}
+					updateAASM={this.updateAASM}
+					deleteDay={this.deleteDay}
+					createDay={this.createDay}
+					{...this.props}
+				/>
 			</div>
 		)
 	}

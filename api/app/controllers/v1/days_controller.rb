@@ -17,15 +17,17 @@ module V1
 
     # POST /days
     def create
-      day = Day.new(day_params)
-      trip = Trip.find(params[:trip_id])
+      day = Day.new day_params
+      trip = Trip.find params[:trip_id]
       day.trip = trip
       day.user = current_user
 
       if day.save
-        render json: day, status: :created, location: day
+        render json: trip
+        # render json: day, status: :created, location: day
       else
-        render json: day.errors, status: :unprocessable_entity
+        render json: { errors: day.errors.full_messages}
+        # render json: day.errors, status: :unprocessable_entity
       end
     end
 
@@ -40,7 +42,13 @@ module V1
 
     # DELETE /days/1
     def destroy
-      @day.destroy
+      day = Day.find params[:id]
+      trip = day.trip
+      if bid.destroy
+        render json: trip
+      else
+        render json: { errors: day.errors.full_messages}
+      end
     end
 
     private

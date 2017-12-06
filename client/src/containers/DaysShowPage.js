@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Day } from '../lib/dayRequests'
-
+import { Day } from '../lib/tripRequests'
 import DayDetails from './DayDetails'
 
 class DaysShowPage extends Component {

@@ -1,28 +1,22 @@
 import React, { Component } from 'react'
 import { Trip } from '../lib/tripRequests'
-import { Day } from '../lib/dayRequests'
 import MapComponent from '../components/MyMapComponent'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { Container, Row, Col, Button } from 'reactstrap'
 import DaysList from './DaysList'
-// import DaysNewPage from './DaysNewPage'
+import DayFormBasic from '../components/DayFormBasic'
 
 class TripDetails extends Component {
 	constructor(props) {
 		super(props)
 
 		this.deleteTrip = this.deleteTrip.bind(this)
-		this.createDay = this.createDay.bind(this)
 	}
 
 	async deleteTrip(event) {
 		event.preventDefault()
 		await Trip.destroy(this.props.trip.id)
 		this.props.history.push('/trips')
-	}
-	async createDay(trip) {
-		const data = await Day.create(trip)
-		this.props.history.push(`/trips/${data.id}`)
 	}
 
 	render() {
@@ -40,7 +34,7 @@ class TripDetails extends Component {
 			latitude,
 			days = []
 		} = this.props.trip
-		const { updateAASM, current_user } = this.props
+		const { updateAASM, current_user, createDay, deleteDay } = this.props
 		return (
 			<Container className="container-fluid">
 				<Row className="TripDetails">
@@ -116,22 +110,27 @@ class TripDetails extends Component {
 				</Row>
 				<Row>
 					<Col>
-						<Button
-							className="tn btn-outline-info newIdeaButton"
-							onClick={this.addNewIdea}
-						>
-							Create Day
-						</Button>
+						{user.id === current_user.id ? (
+							<div>
+								<hr />
+								<h4>Add Days to Your Trip</h4>
+								<DayFormBasic createDay={createDay} {...this.props} />
+							</div>
+						) : (
+							<span />
+						)}
 					</Col>
 				</Row>
-				{/* <Row>
-					<Col>
-						<DaysNewPage tripId={id} user={user} days={days} />
-					</Col>
-				</Row> */}
+
 				<Row>
 					<Col>
-						<DaysList tripId={id} user={user} days={days} />
+						<hr />
+						<DaysList
+							tripId={id}
+							user={user}
+							days={days}
+							deleteDay={deleteDay}
+						/>
 					</Col>
 				</Row>
 			</Container>

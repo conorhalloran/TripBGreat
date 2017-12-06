@@ -12,13 +12,7 @@ import {
 	NavbarToggler,
 	NavbarBrand,
 	Nav,
-	NavItem,
-	NavLink,
-	Container,
-	Row,
-	Col,
-	Jumbotron,
-	Button
+	NavItem
 } from 'reactstrap'
 
 // PAGES

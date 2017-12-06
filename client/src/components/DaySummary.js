@@ -5,7 +5,6 @@ import { Container, Row, Col } from 'reactstrap'
 function DaySummary(props) {
 	const { id, title, description } = props.day
 	const { tripId } = props
-	console.log(props, 'DaySummary')
 
 	return (
 		<div className="DaySummary">

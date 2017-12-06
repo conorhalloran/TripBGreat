@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import SignInForm from '../components/SignInForm'
 import { Token } from '../lib/tripRequests'
-import { Container, Row, Col, Button } from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap'
 import jwtDecode from 'jwt-decode'
 
 class HomePage extends Component {
