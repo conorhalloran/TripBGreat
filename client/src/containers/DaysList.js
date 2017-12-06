@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import DaySummary from '../components/DaySummary'
-// import { Button, Container, Row, Col } from 'reactstrap'
+import { Container } from 'reactstrap'
 
 class DaysList extends Component {
 	constructor(props) {
@@ -15,16 +15,18 @@ class DaysList extends Component {
 		return (
 			<div>
 				<h2>Intinerary</h2>
-				<ol className="DaysList">
-					{this.props.days.map(day => (
-						<DaySummary
-							key={day.id}
-							day={day}
-							user={this.props.user}
-							{...this.props}
-						/>
-					))}
-				</ol>
+				<Container>
+					<ol className="DaysList">
+						{this.props.days.map(day => (
+							<DaySummary
+								key={day.id}
+								day={day}
+								user={this.props.user}
+								{...this.props}
+							/>
+						))}
+					</ol>
+				</Container>
 			</div>
 		)
 	}
