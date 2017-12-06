@@ -1,6 +1,16 @@
 import React from 'react'
 import { DateRangePicker } from 'react-dates'
 import LocationSearch from './LocationSearch'
+import {
+	Button,
+	Container,
+	Row,
+	Col,
+	Form,
+	FormGroup,
+	Label,
+	Input
+} from 'reactstrap'
 
 class TripForm extends React.Component {
 	constructor(props) {
@@ -26,7 +36,11 @@ class TripForm extends React.Component {
 		const latitude = location.lat()
 		const longitude = location.lng()
 		const tripLocation = place.formatted_address
-		this.setState({ latitude: latitude, longitude: longitude, tripLocation: tripLocation.toString() })
+		this.setState({
+			latitude: latitude,
+			longitude: longitude,
+			tripLocation: tripLocation.toString()
+		})
 	}
 
 	handleSubmit = event => {
@@ -47,33 +61,50 @@ class TripForm extends React.Component {
 	render() {
 		const { title = '', description = '', location = '' } = this.props
 		return (
-			<form className="TripForm" onSubmit={this.handleSubmit}>
-				<div>
-					<label htmlFor="title">Title</label> <br />
-					<input id="title" name="title" defaultValue={title} />
-				</div>
-				<div>
-					<label htmlFor="description">Description</label> <br />
-					<textarea id="description" name="description" defaultValue={description} />
-				</div>
-				<DateRangePicker
-					displayFormat={'DD-MM-YYYY'}
-					startDate={this.state.startDate}
-					endDate={this.state.endDate}
-					onDatesChange={({ startDate, endDate }) => {
-						this.setState({ startDate, endDate })
-					}}
-					focusedInput={this.state.focusedInput}
-					onFocusChange={focusedInput => this.setState({ focusedInput })}
-				/>
-				<div>
-					<label htmlFor="location">Location</label> <br />
-					<LocationSearch onPlacesChanged={this.handlePlacesChanged} defaultValue={location} />
-				</div>
-				<div>
-					<input type="submit" value="Submit" />
-				</div>
-			</form>
+			<Container>
+				<Row>
+					<Col>
+						<Form className="TripForm" onSubmit={this.handleSubmit}>
+							<FormGroup>
+								<Label for="title">Title: </Label>
+								<Input id="title" name="title" defaultValue={title} />
+							</FormGroup>
+							<FormGroup>
+								<Label for="description">Description: </Label>
+								<Input
+									type="textarea"
+									id="description"
+									name="description"
+									defaultValue={description}
+								/>
+							</FormGroup>
+							<FormGroup>
+								<Label for="dates">Trip Dates: </Label>
+								<DateRangePicker
+									displayFormat={'DD-MM-YYYY'}
+									startDate={this.state.startDate}
+									endDate={this.state.endDate}
+									onDatesChange={({ startDate, endDate }) => {
+										this.setState({ startDate, endDate })
+									}}
+									focusedInput={this.state.focusedInput}
+									onFocusChange={focusedInput =>
+										this.setState({ focusedInput })
+									}
+								/>
+							</FormGroup>
+							<FormGroup>
+								<Label htmlFor="location">Location</Label>
+								<LocationSearch
+									onPlacesChanged={this.handlePlacesChanged}
+									defaultValue={location}
+								/>
+							</FormGroup>
+							<Button className="btn btn-outline-info">Create Trip</Button>
+						</Form>
+					</Col>
+				</Row>
+			</Container>
 		)
 	}
 }

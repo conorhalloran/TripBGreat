@@ -6,7 +6,16 @@ class DaysList extends Component {
 		return (
 			<div>
 				<h2>Intinerary</h2>
-				<ol className="DaysList">{this.props.days.map(day => <DaySummary key={day.id} day={day} user={this.props.user} {...this.props} />)}</ol>
+				<ol className="DaysList">
+					{this.props.days.map(day => (
+						<DaySummary
+							key={day.id}
+							day={day}
+							user={this.props.user}
+							{...this.props}
+						/>
+					))}
+				</ol>
 			</div>
 		)
 	}

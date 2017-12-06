@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css'
-import logo from '../logo.svg'
+import logo from '../images/tripBGreat2.png'
 import '../stylesheets/App.css'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
@@ -29,6 +29,7 @@ import TripsShowPage from './TripsShowPage'
 import DaysShowPage from './DaysShowPage'
 import SignInPage from './SignInPage'
 import SignUpPage from './SignUpPage'
+import HomePage from './HomePage'
 
 // APP
 class App extends Component {
@@ -141,7 +142,7 @@ class App extends Component {
 			<Navbar color="faded" light expand="sm">
 				<NavbarToggler onClick={this.toggle} />
 				<NavbarBrand href="/">
-					<img src={logo} alt="" /> TripBGreat
+					<img className="logo" src={logo} alt="" /> TripBGreat
 				</NavbarBrand>
 				{this.isSignedIn() ? this._navUserSignedIn() : this._navNoUser()}
 			</Navbar>
@@ -190,6 +191,7 @@ class App extends Component {
 							path="/sign_up"
 							render={props => <SignUpPage {...props} onSignUp={this.signIn} />}
 						/>
+						<Route path="/" component={HomePage} />
 					</Switch>
 				</div>
 			</Router>

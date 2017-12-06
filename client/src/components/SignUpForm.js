@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button, Col, Form, FormGroup, Label, Input } from 'reactstrap'
 
 const SignUpForm = props => {
 	const { onSubmit = () => {} } = props
@@ -17,36 +18,39 @@ const SignUpForm = props => {
 	}
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<div>
-				<label htmlFor="first_name">First Name</label> <br />
-				<input type="first_name" id="first_name" name="first_name" />
-			</div>
+		<Col>
+			<Form onSubmit={handleSubmit}>
+				<FormGroup>
+					<Label for="first_name">First Name</Label>
+					<Input type="first_name" id="first_name" name="first_name" />
+				</FormGroup>
 
-			<div>
-				<label htmlFor="last_name">Last Name</label> <br />
-				<input type="last_name" id="last_name" name="last_name" />
-			</div>
+				<FormGroup>
+					<Label for="last_name">Last Name</Label>
+					<Input type="last_name" id="last_name" name="last_name" />
+				</FormGroup>
 
-			<div>
-				<label htmlFor="email">Email</label> <br />
-				<input type="email" id="email" name="email" />
-			</div>
+				<FormGroup>
+					<Label for="email">Email</Label>
+					<Input type="email" id="email" name="email" />
+				</FormGroup>
 
-			<div>
-				<label htmlFor="password">Password</label> <br />
-				<input type="password" id="password" name="password" />
-			</div>
+				<FormGroup>
+					<Label for="password">Password</Label>
+					<Input type="password" id="password" name="password" />
+				</FormGroup>
 
-			<div>
-				<label htmlFor="password_confirmation">Password Confirmation</label> <br />
-				<input type="password" id="password_confirmation" name="password_confirmation" />
-			</div>
-
-			<div>
-				<input type="submit" value="Sign Up" />
-			</div>
-		</form>
+				<FormGroup>
+					<Label for="password_confirmation">Password Confirmation</Label>
+					<Input
+						type="password"
+						id="password_confirmation"
+						name="password_confirmation"
+					/>
+				</FormGroup>
+				<Button>Sign Up</Button>
+			</Form>
+		</Col>
 	)
 }
 

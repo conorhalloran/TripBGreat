@@ -82,10 +82,10 @@ trips.each do |trip|
         usedId = userArray.sample
         trip.users << usedId
     end
-    
+    counter = 1
     trip.duration.times.each do
     Day.create(
-        title: Faker::Pokemon.name,
+        title: "Day #{counter}",
         description: Faker::RickAndMorty.quote,
         date: trip.start_date,
         start_location: trip.location,
@@ -98,6 +98,7 @@ trips.each do |trip|
         trip_id: trip.id,
 
     )
+    counter +=1
     end
 end 
 days = Day.all
