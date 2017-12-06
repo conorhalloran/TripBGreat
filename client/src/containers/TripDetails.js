@@ -1,21 +1,28 @@
 import React, { Component } from 'react'
 import { Trip } from '../lib/tripRequests'
+import { Day } from '../lib/dayRequests'
 import MapComponent from '../components/MyMapComponent'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { Container, Row, Col, Button } from 'reactstrap'
 import DaysList from './DaysList'
+// import DaysNewPage from './DaysNewPage'
 
 class TripDetails extends Component {
 	constructor(props) {
 		super(props)
 
 		this.deleteTrip = this.deleteTrip.bind(this)
+		this.createDay = this.createDay.bind(this)
 	}
 
 	async deleteTrip(event) {
 		event.preventDefault()
 		await Trip.destroy(this.props.trip.id)
 		this.props.history.push('/trips')
+	}
+	async createDay(trip) {
+		const data = await Day.create(trip)
+		this.props.history.push(`/trips/${data.id}`)
 	}
 
 	render() {
@@ -107,6 +114,21 @@ class TripDetails extends Component {
 							longitude && <MapComponent lat={latitude} long={longitude} />}
 					</Col>
 				</Row>
+				<Row>
+					<Col>
+						<Button
+							className="tn btn-outline-info newIdeaButton"
+							onClick={this.addNewIdea}
+						>
+							Create Day
+						</Button>
+					</Col>
+				</Row>
+				{/* <Row>
+					<Col>
+						<DaysNewPage tripId={id} user={user} days={days} />
+					</Col>
+				</Row> */}
 				<Row>
 					<Col>
 						<DaysList tripId={id} user={user} days={days} />
