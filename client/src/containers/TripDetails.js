@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { Trip } from '../lib/tripRequests'
-import MapComponent from '../components/MyMapComponent'
+import MapGeneral from '../components/MapGeneral'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { Container, Row, Col, Button } from 'reactstrap'
 import DaysList from './DaysList'
-// import DayFormBasic from '../components/DayFormBasic'
 import DayForm from '../components/DayForm'
 
 class TripDetails extends Component {
@@ -36,6 +35,7 @@ class TripDetails extends Component {
 			days = []
 		} = this.props.trip
 		const { updateAASM, current_user, createDay, deleteDay } = this.props
+		console.log('Day Length', days.length)
 		return (
 			<Container className="container-fluid">
 				<Row className="TripDetails">
@@ -106,16 +106,22 @@ class TripDetails extends Component {
 					</Col>
 					<Col sm="7">
 						{latitude &&
-							longitude && <MapComponent lat={latitude} long={longitude} />}
+							longitude && <MapGeneral lat={latitude} long={longitude} />}
 					</Col>
 				</Row>
 				<Row>
 					<Col>
 						{user.id === current_user.id ? (
 							<div>
-								<hr />
-								<h4>Add Days to Your Trip</h4>
-								<DayForm createDay={createDay} {...this.props} />
+								{duration > days.length ? (
+									<span />
+								) : (
+									<div>
+										<hr />
+										<h4>Add Days to Your Trip</h4>
+										<DayForm createDay={createDay} {...this.props} />
+									</div>
+								)}
 							</div>
 						) : (
 							<span />

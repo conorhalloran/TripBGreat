@@ -63,6 +63,7 @@ class DayForm extends React.Component {
 			end_latitude: this.state.endLatitude,
 			end_longitude: this.state.endLongitude
 		})
+		// this.refs.form.reset()
 	}
 
 	render() {
@@ -74,10 +75,17 @@ class DayForm extends React.Component {
 						<Form className="TripForm" onSubmit={this.handleSubmit}>
 							<FormGroup>
 								<Label for="title">Title: </Label>
-								<Input id="title" name="title" defaultValue={title} />
+								<Input
+									id="title"
+									name="title"
+									// ref="title"
+									defaultValue={title}
+								/>
 							</FormGroup>
 							<FormGroup>
-								<Label for="description">Description: </Label>
+								<Label for="description" ref="description">
+									Description:
+								</Label>
 								<Input
 									type="textarea"
 									id="description"
@@ -85,21 +93,6 @@ class DayForm extends React.Component {
 									defaultValue={description}
 								/>
 							</FormGroup>
-							{/* <FormGroup>
-								<Label for="dates">Trip Dates: </Label>
-								<SingleDayPicker
-									displayFormat={'DD-MM-YYYY'}
-									startDate={this.state.startDate}
-									endDate={this.state.endDate}
-									onDatesChange={({ startDate, endDate }) => {
-										this.setState({ startDate, endDate })
-									}}
-									focusedInput={this.state.focusedInput}
-									onFocusChange={focusedInput =>
-										this.setState({ focusedInput })
-									}
-								/>
-							</FormGroup> */}
 							<FormGroup>
 								<Label for="startLocation">Start Location</Label>
 								<LocationSearch
