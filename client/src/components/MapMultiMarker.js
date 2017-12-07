@@ -18,11 +18,12 @@ const MyMapComponent = compose(
 	}),
 	withStateHandlers(
 		() => ({
-			isOpen: false
+			isOpen: false,
+			currentMarker: 0
 		}),
 		{
-			onToggleOpen: ({ isOpen }) => () => ({
-				isOpen: !isOpen
+			updateMarkerState: ({ currentMarker }) => dayId => ({
+				currentMarker: dayId
 			})
 		}
 	),
@@ -39,10 +40,16 @@ const MyMapComponent = compose(
 					<Marker
 						key={day.id}
 						position={{ lat: day.end_latitude, lng: day.end_longitude }}
-						onClick={props.onToggleOpen}
+						onClick={() => {
+							props.updateMarkerState(day.id)
+						}}
 					>
-						{props.isOpen && (
-							<InfoWindow onCloseClick={props.onToggleOpen}>
+						{props.currentMarker === day.id && (
+							<InfoWindow
+								onCloseClick={() => {
+									props.updateMarkerState(0)
+								}}
+							>
 								<div>
 									<p>{day.title}</p>
 								</div>

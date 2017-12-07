@@ -63,7 +63,6 @@ class DayForm extends React.Component {
 			end_latitude: this.state.endLatitude,
 			end_longitude: this.state.endLongitude
 		})
-		// this.refs.form.reset()
 	}
 
 	render() {
@@ -78,9 +77,7 @@ class DayForm extends React.Component {
 								<Input id="title" name="title" defaultValue={title} />
 							</FormGroup>
 							<FormGroup>
-								<Label for="description" ref="description">
-									Description:
-								</Label>
+								<Label for="description">Description:</Label>
 								<Input
 									type="textarea"
 									id="description"
