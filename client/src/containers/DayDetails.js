@@ -37,9 +37,7 @@ class DayDetails extends Component {
 					</Col>
 					<Col sm="7">
 						{start_latitude &&
-							start_longitude && (
-								<MapGeneral lat={start_latitude} long={start_longitude} />
-							)}
+							start_longitude && <MapGeneral day={this.props.day} />}
 					</Col>
 				</Row>
 				<Row>
