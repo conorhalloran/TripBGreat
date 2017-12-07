@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Button } from 'reactstrap'
 
 function DaySummary(props) {
 	const { id, title, description, start_location, end_location } = props.day
 	const { tripId } = props
 	const { index } = props
+	const { deleteDay } = props
 
 	return (
 		<tr>
@@ -15,6 +17,9 @@ function DaySummary(props) {
 			<td>{description}</td>
 			<td>{start_location}</td>
 			<td>{end_location}</td>
+			{/* <td>
+				<Button onClick={deleteDay}>X</Button>
+			</td> */}
 		</tr>
 	)
 }

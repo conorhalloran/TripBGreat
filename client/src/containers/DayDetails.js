@@ -19,7 +19,8 @@ class DayDetails extends Component {
 			start_longitude,
 			start_latitude,
 			end_longitude,
-			end_latitude
+			end_latitude,
+			trip = {}
 		} = this.props.day
 		return (
 			<Container>
@@ -41,7 +42,9 @@ class DayDetails extends Component {
 					</Col>
 				</Row>
 				<Row>
-					<Link to={'#'}>Back to Trip</Link>
+					<Link to={`/trips/${trip.id}`} className="btn btn-outline-info">
+						Back to Trip
+					</Link>
 				</Row>
 			</Container>
 		)

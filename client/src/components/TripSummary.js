@@ -3,7 +3,15 @@ import { Link } from 'react-router-dom'
 import { Col } from 'reactstrap'
 
 function TripSummary(props) {
-	const { id, title, start_date, user = {}, aasm_state, duration } = props.trip
+	const {
+		id,
+		title,
+		location,
+		start_date,
+		user = {},
+		aasm_state,
+		duration
+	} = props.trip
 
 	return (
 		<Col xs="6" sm="4" md="3" className="TripSummary">
@@ -11,8 +19,13 @@ function TripSummary(props) {
 			<p>
 				By: {user.first_name} {user.last_name}
 				<br />
-				Status: {aasm_state} • Start Date : {start_date} • Duration : {duration}{' '}
-				Days
+				Location: {location}
+				<br />
+				Status: {aasm_state}
+				<br />
+				Start Date : {start_date}
+				<br />
+				Duration : {duration} Days
 			</p>
 		</Col>
 	)
