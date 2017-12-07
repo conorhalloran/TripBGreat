@@ -12,18 +12,21 @@ import {
 	Input
 } from 'reactstrap'
 
+const INITIAL_STATE = {
+	title: '',
+	description: '',
+	startLocation: '',
+	startLongitude: null,
+	startLatitude: null,
+	endLocation: '',
+	endLongitude: null,
+	endLatitude: null
+}
+
 class DayForm extends React.Component {
 	constructor(props) {
 		super(props)
-
-		this.state = {
-			startLocation: null,
-			startLongitude: null,
-			startLatitude: null,
-			endLocation: null,
-			endLongitude: null,
-			endLatitude: null
-		}
+		this.state = INITIAL_STATE
 	}
 
 	startHandlePlacesChanged = place => {
@@ -31,6 +34,7 @@ class DayForm extends React.Component {
 		const latitude = location.lat()
 		const longitude = location.lng()
 		const tripLocation = place.formatted_address
+		console.log('changed', tripLocation)
 		this.setState({
 			startLatitude: latitude,
 			startLongitude: longitude,
@@ -53,20 +57,31 @@ class DayForm extends React.Component {
 		event.preventDefault()
 		const { currentTarget } = event
 		const formData = new FormData(currentTarget)
-		this.props.createDay({
-			title: formData.get('title'),
-			description: formData.get('description'),
-			start_location: this.state.startLocation,
-			start_latitude: this.state.startLatitude,
-			start_longitude: this.state.startLongitude,
-			end_location: this.state.endLocation,
-			end_latitude: this.state.endLatitude,
-			end_longitude: this.state.endLongitude
-		})
+		this.props
+			.createDay({
+				title: formData.get('title'),
+				description: formData.get('description'),
+				start_location: this.state.startLocation,
+				start_latitude: this.state.startLatitude,
+				start_longitude: this.state.startLongitude,
+				end_location: this.state.endLocation,
+				end_latitude: this.state.endLatitude,
+				end_longitude: this.state.endLongitude
+			})
+			.then(() => {
+				this.setState(INITIAL_STATE)
+			})
+	}
+
+	handleInputChange(e, field) {
+		e.preventDefault()
+		let newState = {}
+		newState[field] = e.target.value
+		this.setState(newState)
 	}
 
 	render() {
-		const { title = '', description = '', location = '' } = this.props
+		const { title, description, startLocation, endLocation } = this.state
 		return (
 			<Container>
 				<Row>
@@ -74,7 +89,12 @@ class DayForm extends React.Component {
 						<Form className="TripForm" onSubmit={this.handleSubmit}>
 							<FormGroup>
 								<Label for="title">Title: </Label>
-								<Input id="title" name="title" defaultValue={title} />
+								<Input
+									id="title"
+									name="title"
+									onChange={e => this.handleInputChange(e, 'title')}
+									value={title}
+								/>
 							</FormGroup>
 							<FormGroup>
 								<Label for="description">Description:</Label>
@@ -82,21 +102,22 @@ class DayForm extends React.Component {
 									type="textarea"
 									id="description"
 									name="description"
-									defaultValue={description}
+									onChange={e => this.handleInputChange(e, 'description')}
+									value={description}
 								/>
 							</FormGroup>
 							<FormGroup>
 								<Label for="startLocation">Start Location</Label>
 								<LocationSearch
 									onPlacesChanged={this.startHandlePlacesChanged}
-									defaultValue={location}
+									value={startLocation}
 								/>
 							</FormGroup>
 							<FormGroup>
 								<Label for="endLocation">End Location</Label>
 								<LocationSearch
 									onPlacesChanged={this.endHandlePlacesChanged}
-									defaultValue={location}
+									value={endLocation}
 								/>
 							</FormGroup>
 							<Button className="btn btn-outline-info">Create Day</Button>

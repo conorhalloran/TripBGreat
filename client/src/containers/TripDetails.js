@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Trip } from '../lib/tripRequests'
 import MapMultiMarker from '../components/MapMultiMarker'
-import { BrowserRouter as Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { Container, Row, Col, Button } from 'reactstrap'
 import DaysList from './DaysList'
 import DayForm from '../components/DayForm'
