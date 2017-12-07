@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Row, Col } from 'reactstrap'
 
 function DaySummary(props) {
 	const { id, title, description, start_location, end_location } = props.day

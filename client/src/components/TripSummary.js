@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Row, Col } from 'reactstrap'
+import { Col } from 'reactstrap'
 
 function TripSummary(props) {
 	const { id, title, start_date, user = {}, aasm_state, duration } = props.trip

@@ -41,7 +41,7 @@ class DayDetails extends Component {
 					</Col>
 				</Row>
 				<Row>
-					<Col />
+					<Link to={`trips/${id}`}>Back to Trip</Link>
 				</Row>
 			</Container>
 		)
