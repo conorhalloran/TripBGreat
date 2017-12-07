@@ -7,6 +7,7 @@ import {
 	Marker,
 	InfoWindow
 } from 'react-google-maps'
+import { Container, Row, Col } from 'reactstrap'
 
 const MyMapComponent = compose(
 	withProps({
@@ -35,7 +36,7 @@ const MyMapComponent = compose(
 		defaultCenter={{ lat: props.lat, lng: props.long }}
 	>
 		{props.isMarkerShown &&
-			props.days.map(day => {
+			props.days.map((day, index) => {
 				return (
 					<Marker
 						key={day.id}
@@ -50,9 +51,14 @@ const MyMapComponent = compose(
 									props.updateMarkerState(0)
 								}}
 							>
-								<div>
-									<p>{day.title}</p>
-								</div>
+								<Container>
+									<Row>
+										<p>Day #{index + 1}</p>
+									</Row>
+									<Row>
+										<p>{day.title}</p>
+									</Row>
+								</Container>
 							</InfoWindow>
 						)}
 					</Marker>

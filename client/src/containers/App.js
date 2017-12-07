@@ -148,44 +148,49 @@ class App extends Component {
 			<Router>
 				<div className="App">
 					{this._renderNavBar()}
+					<div className="Main">
+						<Switch>
+							<AuthRoute
+								isAuthenticated={this.isSignedIn()}
+								path="/trips/new"
+								component={TripsNewPage}
+							/>
+							<AuthRoute
+								isAuthenticated={this.isSignedIn()}
+								path="/trips/:id/edit"
+								component={TripsEditPage}
+								user={this.state.user}
+							/>
+							<AuthRoute
+								isAuthenticated={this.isSignedIn()}
+								exact
+								path="/trips/:id"
+								component={TripsShowPage}
+								user={this.state.user}
+							/>
+							<AuthRoute
+								isAuthenticated={this.isSignedIn()}
+								path="/trips/:tripId/days/:id"
+								component={DaysShowPage}
+								user={this.state.user}
+							/>
 
-					<Switch>
-						<AuthRoute
-							isAuthenticated={this.isSignedIn()}
-							path="/trips/new"
-							component={TripsNewPage}
-						/>
-						<AuthRoute
-							isAuthenticated={this.isSignedIn()}
-							path="/trips/:id/edit"
-							component={TripsEditPage}
-							user={this.state.user}
-						/>
-						<AuthRoute
-							isAuthenticated={this.isSignedIn()}
-							exact
-							path="/trips/:id"
-							component={TripsShowPage}
-							user={this.state.user}
-						/>
-						<AuthRoute
-							isAuthenticated={this.isSignedIn()}
-							path="/trips/:tripId/days/:id"
-							component={DaysShowPage}
-							user={this.state.user}
-						/>
-
-						<Route path="/trips" component={TripsIndexPage} />
-						<Route
-							path="/sign_in"
-							render={props => <SignInPage {...props} onSignIn={this.signIn} />}
-						/>
-						<Route
-							path="/sign_up"
-							render={props => <SignUpPage {...props} onSignUp={this.signIn} />}
-						/>
-						<Route path="/" component={HomePage} />
-					</Switch>
+							<Route path="/trips" component={TripsIndexPage} />
+							<Route
+								path="/sign_in"
+								render={props => (
+									<SignInPage {...props} onSignIn={this.signIn} />
+								)}
+							/>
+							<Route
+								path="/sign_up"
+								render={props => (
+									<SignUpPage {...props} onSignUp={this.signIn} />
+								)}
+							/>
+							<Route path="/" component={HomePage} />
+						</Switch>
+					</div>
 				</div>
 			</Router>
 		)

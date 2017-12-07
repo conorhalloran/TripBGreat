@@ -22,7 +22,7 @@ class DayDetails extends Component {
 			end_latitude
 		} = this.props.day
 		return (
-			<Container className="container-fluid">
+			<Container>
 				<Row className="DayDetails">
 					<Col>
 						<h1>Day Details</h1>

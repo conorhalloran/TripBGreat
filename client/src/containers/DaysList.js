@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import DaySummary from '../components/DaySummary'
-import { Container } from 'reactstrap'
+import { Table } from 'reactstrap'
 
 class DaysList extends Component {
 	constructor(props) {
@@ -15,18 +15,30 @@ class DaysList extends Component {
 		return (
 			<div>
 				<h2>Intinerary</h2>
-				<Container>
-					<ol className="DaysList">
-						{this.props.days.map(day => (
-							<DaySummary
-								key={day.id}
-								day={day}
-								user={this.props.user}
-								{...this.props}
-							/>
-						))}
-					</ol>
-				</Container>
+				<Table>
+					<thead>
+						<tr>
+							<th>Day</th>
+							<th>Title</th>
+							<th>Description</th>
+							<th>Start Location</th>
+							<th>End Location</th>
+						</tr>
+					</thead>
+					<tbody>
+						{this.props.days
+							.reverse()
+							.map((day, index) => (
+								<DaySummary
+									key={day.id}
+									day={day}
+									index={index}
+									user={this.props.user}
+									{...this.props}
+								/>
+							))}
+					</tbody>
+				</Table>
 			</div>
 		)
 	}
