@@ -1,28 +1,27 @@
-.App {
-  text-align: center;
+.Main {
+	padding: 1rem;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.logo {
+	height: 80px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.DateRangePicker {
+	width: 100%;
 }
 
-.App-title {
-  font-size: 1.5em;
+h1 {
+	text-align: center;
 }
 
-.App-intro {
-  font-size: large;
+.TripSummary {
+	box-sizing: border-box;
+	border: 1px solid #ced4da;
+	border-radius: 0.25rem;
+	background-color: whitesmoke;
+	padding: 0.25rem;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.TripList {
+	justify-content: center;
 }

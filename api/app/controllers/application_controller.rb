@@ -6,11 +6,6 @@ class ApplicationController < ActionController::API
     end
     helper_method :authenticate_user!
     
-    def user_signed_in?
-        current_user.present?
-    end
-    helper_method :user_signed_in?
-
     def current_user
     #headers: { 'authorization': 'JWT <token>'}
     token_type, token = request.headers['AUTHORIZATION']&.split(" ") || []
@@ -27,6 +22,16 @@ class ApplicationController < ActionController::API
         end
     end
     helper_method :current_user
+    
+    # def current_user
+    #     @current_user ||= User.find_by(id: session[:user_id])
+    # end
+    
+    
+    def user_signed_in?
+        current_user.present?
+    end
+    helper_method :user_signed_in?
 
     private
     def authenticate_api_user

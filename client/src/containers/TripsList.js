@@ -1,16 +1,25 @@
-import React, { Component } from "react";
-import TripSummary from "../components/TripSummary";
+import React, { Component } from 'react'
+import TripSummary from '../components/TripSummary'
+import { Container, Row } from 'reactstrap'
 
 class TripsList extends Component {
-  render() {
-    const { user = {} } = this.props;
-    return (
-      <div className="TripsList">
-        <h1>Trips</h1>
-        {this.props.trips.map(trip => <TripSummary key={trip.id} trip={trip} user={user} {...this.props} />)}
-      </div>
-    );
-  }
+	render() {
+		return (
+			<Container fluid>
+				<h1>Trips</h1>
+				<Row className="TripsList">
+					{this.props.trips.map(trip => (
+						<TripSummary
+							key={trip.id}
+							trip={trip}
+							user={this.props.user}
+							{...this.props}
+						/>
+					))}
+				</Row>
+			</Container>
+		)
+	}
 }
 
-export default TripsList;
+export default TripsList

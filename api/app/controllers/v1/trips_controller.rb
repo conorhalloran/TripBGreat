@@ -2,7 +2,7 @@ module V1
   class TripsController < ApplicationController
     
     def index
-      @trips = Trip.all
+      @trips = Trip.all.order(created_at: :desc)
       # @trips = Trip.where(aasm_state: [:published, :in_progress]).order(created_at: :desc)
 
       render json: @trips
@@ -16,10 +16,9 @@ module V1
 
   
     def create
-      # byebug
+      
       trip = Trip.new(trip_params)
       trip.user = current_user
-
       if trip.save
         render json: trip
       else
@@ -51,7 +50,7 @@ module V1
     private
 
       def trip_params
-        params.require(:trip).permit(:title, :description, :location, :start_date, :end_date, :duration, :user_id, :aasm_state)
+        params.require(:trip).permit(:title, :description, :location, :start_date, :end_date, :duration, :user_id, :aasm_state, :latitude, :longitude)
       end
   end
 end
