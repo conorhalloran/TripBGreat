@@ -3,18 +3,20 @@ import { Link } from 'react-router-dom'
 import { Container, Row, Col } from 'reactstrap'
 
 function DaySummary(props) {
-	const { id, title, description } = props.day
+	const { id, title, description, start_location, end_location } = props.day
 	const { tripId } = props
+	const { index } = props
 
 	return (
-		<Row>
-			<li className="DaySummary">
-				<Col>
-					<Link to={`/trips/${tripId}/days/${id}`}>{title}</Link>
-					<p>{description}</p>
-				</Col>
-			</li>
-		</Row>
+		<tr>
+			<th scope="row">{index + 1}</th>
+			<td>
+				<Link to={`/trips/${tripId}/days/${id}`}>{title}</Link>
+			</td>
+			<td>{description}</td>
+			<td>{start_location}</td>
+			<td>{end_location}</td>
+		</tr>
 	)
 }
 

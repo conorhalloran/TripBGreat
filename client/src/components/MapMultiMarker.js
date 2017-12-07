@@ -1,5 +1,5 @@
 import React from 'react'
-import { compose, withProps } from 'recompose'
+import { compose, withProps, withStateHandlers } from 'recompose'
 import {
 	withScriptjs,
 	withGoogleMap,
@@ -7,6 +7,7 @@ import {
 	Marker,
 	InfoWindow
 } from 'react-google-maps'
+import { Container, Row, Col } from 'reactstrap'
 
 const MyMapComponent = compose(
 	withProps({
@@ -16,6 +17,17 @@ const MyMapComponent = compose(
 		containerElement: <div style={{ height: `400px` }} />,
 		mapElement: <div style={{ height: `100%` }} />
 	}),
+	withStateHandlers(
+		() => ({
+			isOpen: false,
+			currentMarker: 0
+		}),
+		{
+			updateMarkerState: ({ currentMarker }) => dayId => ({
+				currentMarker: dayId
+			})
+		}
+	),
 	withScriptjs,
 	withGoogleMap
 )(props => (
@@ -24,13 +36,32 @@ const MyMapComponent = compose(
 		defaultCenter={{ lat: props.lat, lng: props.long }}
 	>
 		{props.isMarkerShown &&
-			props.days.map(day => {
+			props.days.map((day, index) => {
 				return (
 					<Marker
 						key={day.id}
 						position={{ lat: day.end_latitude, lng: day.end_longitude }}
-						onClick={props.onMarkerClick}
-					/>
+						onClick={() => {
+							props.updateMarkerState(day.id)
+						}}
+					>
+						{props.currentMarker === day.id && (
+							<InfoWindow
+								onCloseClick={() => {
+									props.updateMarkerState(0)
+								}}
+							>
+								<Container>
+									<Row>
+										<p>Day #{index + 1}</p>
+									</Row>
+									<Row>
+										<p>{day.title}</p>
+									</Row>
+								</Container>
+							</InfoWindow>
+						)}
+					</Marker>
 				)
 			})}
 	</GoogleMap>

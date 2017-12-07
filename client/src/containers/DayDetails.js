@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import MapGeneral from '../components/MapGeneral'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
-import { Container, Row, Col, Button } from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap'
 
 class DayDetails extends Component {
 	constructor(props) {
@@ -22,7 +22,7 @@ class DayDetails extends Component {
 			end_latitude
 		} = this.props.day
 		return (
-			<Container className="container-fluid">
+			<Container>
 				<Row className="DayDetails">
 					<Col>
 						<h1>Day Details</h1>
@@ -37,9 +37,7 @@ class DayDetails extends Component {
 					</Col>
 					<Col sm="7">
 						{start_latitude &&
-							start_longitude && (
-								<MapGeneral lat={start_latitude} long={start_longitude} />
-							)}
+							start_longitude && <MapGeneral day={this.props.day} />}
 					</Col>
 				</Row>
 				<Row>
