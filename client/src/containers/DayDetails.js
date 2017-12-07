@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import MapGeneral from '../components/MapGeneral'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
-import { Container, Row, Col, Button } from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap'
 
 class DayDetails extends Component {
 	constructor(props) {

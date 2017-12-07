@@ -1,5 +1,5 @@
 import React from 'react'
-import { compose, withProps } from 'recompose'
+import { compose, withProps, withStateHandlers } from 'recompose'
 import {
 	withScriptjs,
 	withGoogleMap,
@@ -16,6 +16,16 @@ const MyMapComponent = compose(
 		containerElement: <div style={{ height: `400px` }} />,
 		mapElement: <div style={{ height: `100%` }} />
 	}),
+	withStateHandlers(
+		() => ({
+			isOpen: false
+		}),
+		{
+			onToggleOpen: ({ isOpen }) => () => ({
+				isOpen: !isOpen
+			})
+		}
+	),
 	withScriptjs,
 	withGoogleMap
 )(props => (
@@ -29,8 +39,16 @@ const MyMapComponent = compose(
 					<Marker
 						key={day.id}
 						position={{ lat: day.end_latitude, lng: day.end_longitude }}
-						onClick={props.onMarkerClick}
-					/>
+						onClick={props.onToggleOpen}
+					>
+						{props.isOpen && (
+							<InfoWindow onCloseClick={props.onToggleOpen}>
+								<div>
+									<p>{day.title}</p>
+								</div>
+							</InfoWindow>
+						)}
+					</Marker>
 				)
 			})}
 	</GoogleMap>

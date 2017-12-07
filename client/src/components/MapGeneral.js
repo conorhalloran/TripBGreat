@@ -53,12 +53,13 @@ class MapGeneral extends React.PureComponent {
 	}
 
 	render() {
-		console.log('lat', this.props.lat)
-		console.log('long', this.props.long)
+		console.log('day', this.props)
 		return (
 			<MyMapComponent
-				lat={this.props.start_latitude}
-				long={this.props.start_longitude}
+				lat={this.props.day.start_latitude}
+				long={this.props.day.start_longitude}
+				endLat={this.props.day.end_latitude}
+				endLong={this.props.day.end_longitude}
 				isMarkerShown={this.state.isMarkerShown}
 				onMarkerClick={this.handleMarkerClick}
 			/>
