@@ -100,7 +100,7 @@ class TripForm extends React.Component {
 									defaultValue={location}
 								/>
 							</FormGroup>
-							<Button className="btn btn-outline-info">Create Trip</Button>
+							<Button className="btn btn-info">Create Trip</Button>
 						</Form>
 					</Col>
 				</Row>

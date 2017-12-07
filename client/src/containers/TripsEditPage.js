@@ -21,14 +21,20 @@ class TripsEditPage extends Component {
 
 	async updateTrip(trip) {
 		const data = await Trip.update(trip, this.state.trip.id)
-		data.errors ? this.props.history.push('/trips') : this.props.history.push(`/trips/${data.id}`)
+		data.errors
+			? this.props.history.push('/trips')
+			: this.props.history.push(`/trips/${data.id}`)
 	}
 
 	render() {
 		return (
-			<div className="TripsEditPage">
+			<div className="content">
 				<h1>Edit Trip</h1>
-				<TripForm key={this.state.trip.id} {...this.state.trip} onSubmit={this.updateTrip} />
+				<TripForm
+					key={this.state.trip.id}
+					{...this.state.trip}
+					onSubmit={this.updateTrip}
+				/>
 			</div>
 		)
 	}

@@ -15,7 +15,7 @@ class TripsNewPage extends Component {
 
 	render() {
 		return (
-			<div className="TripsNewPage">
+			<div className="content">
 				<h1>New Trip</h1>
 				<TripForm onSubmit={this.createTrip} />
 			</div>

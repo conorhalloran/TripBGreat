@@ -6,7 +6,10 @@ class TripsList extends Component {
 	render() {
 		return (
 			<Container fluid>
-				<h1>Trips</h1>
+				<div className="content">
+					<h1>Trips</h1>
+				</div>
+
 				<Row className="TripsList">
 					{this.props.trips.map(trip => (
 						<TripSummary

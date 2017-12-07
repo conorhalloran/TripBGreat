@@ -40,117 +40,116 @@ class TripDetails extends Component {
 
 		return (
 			<Container className="container-fluid">
-				<Row className="TripDetails">
-					<Col>
-						<h1>Trip Details</h1>
-					</Col>
-				</Row>
-				<Row>
-					<Col sm="5">
-						<h2>{title}</h2>
-						<p>{description}</p>
-						<p>Location: {location}</p>
-						<p>
-							<em>
-								Trip Creator: {user.first_name} {user.last_name}
-							</em>
-						</p>
-						<p>
-							<strong>Start Date : </strong>
-							{start_date}
-						</p>
-						<p>
-							<strong>End Date : </strong>
-							{end_date}
-						</p>
-						<p>Duration : {duration} Days</p>
-						<div>
-							<h3>
-								Status:
-								{aasm_state === 'completed' ? (
-									<span> Completed Trip!</span>
-								) : (
-									<span />
-								)}
-								{aasm_state === 'published' ? (
-									<span> In Progress!</span>
-								) : (
-									<span />
-								)}
-								{aasm_state === 'pending' ? <span> Pending</span> : <span />}
-							</h3>
-							{aasm_state === 'pending' ? (
-								<span>
-									<Button className="btn btn-outline-info" onClick={updateAASM}>
-										Start Trip
-									</Button>
-								</span>
-							) : (
-								<span />
-							)}
-						</div>
-						{user.id === current_user.id ? (
-							<Row className="TripButtons">
-								<Col>
-									<Link
-										className="btn btn-outline-info"
-										to={`/trips/${id}/edit`}
-									>
-										Edit
-									</Link>
-								</Col>
-								<Col>
-									<Link
-										className="btn btn-outline-info"
-										to={`/trips`}
-										onClick={this.deleteTrip}
-									>
-										Delete
-									</Link>
-								</Col>
-							</Row>
-						) : (
-							<span />
-						)}
-					</Col>
-					<Col sm="7">
-						{latitude &&
-							longitude && (
-								<MapMultiMarker trip={this.props.trip} days={days} />
-							)}
-					</Col>
-				</Row>
-				<Row>
-					<Col>
-						{user.id === current_user.id ? (
+				<div className="content">
+					<Row className="TripDetails">
+						<Col>
+							<h1>Trip Details</h1>
+						</Col>
+					</Row>
+					<Row>
+						<Col sm="5">
+							<h2>{title}</h2>
+							<p>{description}</p>
+							<p>Location: {location}</p>
+							<p>
+								<em>
+									Trip Creator: {user.first_name} {user.last_name}
+								</em>
+							</p>
+							<p>
+								<strong>Start Date : </strong>
+								{start_date}
+							</p>
+							<p>
+								<strong>End Date : </strong>
+								{end_date}
+							</p>
+							<p>Duration : {duration} Days</p>
 							<div>
-								{this.props.trip.duration > days.length ? (
-									<div>
-										<hr />
-										<h4>Add Days to Your Trip</h4>
-										<DayForm createDay={createDay} {...this.props} />
-									</div>
+								<h3>
+									Status:
+									{aasm_state === 'completed' ? (
+										<span> Completed Trip!</span>
+									) : (
+										<span />
+									)}
+									{aasm_state === 'published' ? (
+										<span> In Progress!</span>
+									) : (
+										<span />
+									)}
+									{aasm_state === 'pending' ? <span> Pending</span> : <span />}
+								</h3>
+								{aasm_state === 'pending' ? (
+									<span>
+										<Button className="btn btn-info" onClick={updateAASM}>
+											Start Trip
+										</Button>
+									</span>
 								) : (
 									<span />
 								)}
 							</div>
-						) : (
-							<span />
-						)}
-					</Col>
-				</Row>
+							{user.id === current_user.id ? (
+								<Row className="TripButtons">
+									<Col>
+										<Link className="btn btn-info" to={`/trips/${id}/edit`}>
+											Edit
+										</Link>
+									</Col>
+									<Col>
+										<Link
+											className="btn btn-info"
+											to={`/trips`}
+											onClick={this.deleteTrip}
+										>
+											Delete
+										</Link>
+									</Col>
+								</Row>
+							) : (
+								<span />
+							)}
+						</Col>
+						<Col sm="7">
+							{latitude &&
+								longitude && (
+									<MapMultiMarker trip={this.props.trip} days={days} />
+								)}
+						</Col>
+					</Row>
+					<Row>
+						<Col>
+							{user.id === current_user.id ? (
+								<div>
+									{this.props.trip.duration > days.length ? (
+										<div>
+											<hr />
+											<h4>Add Days to Your Trip</h4>
+											<DayForm createDay={createDay} {...this.props} />
+										</div>
+									) : (
+										<span />
+									)}
+								</div>
+							) : (
+								<span />
+							)}
+						</Col>
+					</Row>
 
-				<Row>
-					<Col>
-						<hr />
-						<DaysList
-							tripId={id}
-							user={user}
-							days={days}
-							deleteDay={deleteDay}
-						/>
-					</Col>
-				</Row>
+					<Row>
+						<Col>
+							<hr />
+							<DaysList
+								tripId={id}
+								user={user}
+								days={days}
+								deleteDay={deleteDay}
+							/>
+						</Col>
+					</Row>
+				</div>
 			</Container>
 		)
 	}

@@ -12,7 +12,9 @@ function DaySummary(props) {
 		<tr>
 			<th scope="row">{index + 1}</th>
 			<td>
-				<Link to={`/trips/${tripId}/days/${id}`}>{title}</Link>
+				<Link to={`/trips/${tripId}/days/${id}`}>
+					<span id="triplinks">{title}</span>
+				</Link>
 			</td>
 			<td>{description}</td>
 			<td>{start_location}</td>

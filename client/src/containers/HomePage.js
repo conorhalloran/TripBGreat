@@ -48,25 +48,31 @@ class HomePage extends Component {
 					{this.isSignedIn() ? (
 						<Row>
 							<Col>
-								<h2>Trip Planning Made Easy</h2>
-								<p>
-									TripBGreat was designed with you in mind. Create an Account to
-									Start Creating Trips. You can invite your friends to join you
-									on trips. Each trip be organized by Days and Activites. Gone
-									are the days of frustrating trip coordination. Will
-									TripBGreat, your Good trips will be Great!
-								</p>
+								<div className="content">
+									<h2>Trip Planning Made Easy</h2>
+									<p>
+										TripBGreat was designed with you in mind. Create an Account
+										to Start Creating Trips. You can invite your friends to join
+										you on trips. Each trip be organized by Days and Activites.
+										Gone are the days of frustrating trip coordination. Will
+										TripBGreat, your Good trips will be Great!
+									</p>
+								</div>
 							</Col>
 						</Row>
 					) : (
 						<Row>
 							<Col>
-								<h2>Trip Planning Made Ease</h2>
-								<p>TripBGreat was designed with you in mind. </p>
+								<div className="content">
+									<h2>Trip Planning Made Ease</h2>
+									<p>TripBGreat was designed with you in mind. </p>
+								</div>
 							</Col>
 
 							<Col>
-								<SignInForm onSubmit={this.signInUser} />
+								<div className="content">
+									<SignInForm onSubmit={this.signInUser} />
+								</div>
 							</Col>
 						</Row>
 					)}

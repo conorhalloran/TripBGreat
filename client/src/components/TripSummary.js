@@ -15,7 +15,11 @@ function TripSummary(props) {
 
 	return (
 		<Col xs="6" sm="4" md="3" className="TripSummary">
-			<Link to={`trips/${id}`}>{title}</Link>
+			<Link to={`trips/${id}`}>
+				<span id="triplinks">
+					<strong>{title}</strong>
+				</span>
+			</Link>
 			<p>
 				By: {user.first_name} {user.last_name}
 				<br />

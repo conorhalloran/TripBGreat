@@ -120,7 +120,7 @@ class DayForm extends React.Component {
 									value={endLocation}
 								/>
 							</FormGroup>
-							<Button className="btn btn-outline-info">Create Day</Button>
+							<Button className="btn btn-info">Create Day</Button>
 						</Form>
 					</Col>
 				</Row>
