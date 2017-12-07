@@ -75,12 +75,7 @@ class DayForm extends React.Component {
 						<Form className="TripForm" onSubmit={this.handleSubmit}>
 							<FormGroup>
 								<Label for="title">Title: </Label>
-								<Input
-									id="title"
-									name="title"
-									// ref="title"
-									defaultValue={title}
-								/>
+								<Input id="title" name="title" defaultValue={title} />
 							</FormGroup>
 							<FormGroup>
 								<Label for="description" ref="description">

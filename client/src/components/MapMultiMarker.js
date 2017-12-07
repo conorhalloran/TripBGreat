@@ -23,16 +23,20 @@ const MyMapComponent = compose(
 		defaultZoom={8}
 		defaultCenter={{ lat: props.lat, lng: props.long }}
 	>
-		{props.isMarkerShown && (
-			<Marker
-				position={{ lat: props.lat, lng: props.long }}
-				onClick={props.onMarkerClick}
-			/>
-		)}
+		{props.isMarkerShown &&
+			props.days.map(day => {
+				return (
+					<Marker
+						key={day.id}
+						position={{ lat: day.end_latitude, lng: day.end_longitude }}
+						onClick={props.onMarkerClick}
+					/>
+				)
+			})}
 	</GoogleMap>
 ))
 
-class MapGeneral extends React.PureComponent {
+class MapMultiMarker extends React.PureComponent {
 	state = {
 		isMarkerShown: false
 	}
@@ -55,14 +59,16 @@ class MapGeneral extends React.PureComponent {
 	render() {
 		console.log('lat', this.props.lat)
 		console.log('long', this.props.long)
+		console.log('days', this.props.days)
 		return (
 			<MyMapComponent
-				lat={this.props.lat}
-				long={this.props.long}
-				isMarkerShown={this.state.isMarkerShown}
+				lat={this.props.trip.latitude}
+				long={this.props.trip.longitude}
+				days={this.props.days}
+				isMarkerShown={true}
 				onMarkerClick={this.handleMarkerClick}
 			/>
 		)
 	}
 }
-export default MapGeneral
+export default MapMultiMarker

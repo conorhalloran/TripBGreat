@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Trip } from '../lib/tripRequests'
-import MapGeneral from '../components/MapGeneral'
+import MapMultiMarker from '../components/MapMultiMarker'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { Container, Row, Col, Button } from 'reactstrap'
 import DaysList from './DaysList'
@@ -36,6 +36,8 @@ class TripDetails extends Component {
 		} = this.props.trip
 		const { updateAASM, current_user, createDay, deleteDay } = this.props
 		console.log('Day Length', days.length)
+		console.log('Days', this.props.trip.duration)
+
 		return (
 			<Container className="container-fluid">
 				<Row className="TripDetails">
@@ -106,21 +108,23 @@ class TripDetails extends Component {
 					</Col>
 					<Col sm="7">
 						{latitude &&
-							longitude && <MapGeneral lat={latitude} long={longitude} />}
+							longitude && (
+								<MapMultiMarker trip={this.props.trip} days={days} />
+							)}
 					</Col>
 				</Row>
 				<Row>
 					<Col>
 						{user.id === current_user.id ? (
 							<div>
-								{duration > days.length ? (
-									<span />
-								) : (
+								{this.props.trip.duration > days.length ? (
 									<div>
 										<hr />
 										<h4>Add Days to Your Trip</h4>
 										<DayForm createDay={createDay} {...this.props} />
 									</div>
+								) : (
+									<span />
 								)}
 							</div>
 						) : (

@@ -21,10 +21,6 @@ class DayDetails extends Component {
 			end_longitude,
 			end_latitude
 		} = this.props.day
-		const dayMarkers = [
-			[start_location, start_latitude, start_longitude],
-			[end_location, end_latitude, end_longitude]
-		]
 		return (
 			<Container className="container-fluid">
 				<Row className="DayDetails">
