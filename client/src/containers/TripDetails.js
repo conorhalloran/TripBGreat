@@ -49,10 +49,10 @@ class TripDetails extends Component {
 					<Col sm="5">
 						<h2>{title}</h2>
 						<p>{description}</p>
-						<p>{location}</p>
+						<p>Location: {location}</p>
 						<p>
 							<em>
-								By: {user.first_name} {user.last_name}
+								Trip Creator: {user.first_name} {user.last_name}
 							</em>
 						</p>
 						<p>
@@ -90,18 +90,25 @@ class TripDetails extends Component {
 							)}
 						</div>
 						{user.id === current_user.id ? (
-							<div>
-								<Link className="btn btn-outline-info" to={`/trips/${id}/edit`}>
-									Edit
-								</Link>
-								<Link
-									className="btn btn-outline-info"
-									to={`/trips`}
-									onClick={this.deleteTrip}
-								>
-									Delete
-								</Link>
-							</div>
+							<Row className="TripButtons">
+								<Col>
+									<Link
+										className="btn btn-outline-info"
+										to={`/trips/${id}/edit`}
+									>
+										Edit
+									</Link>
+								</Col>
+								<Col>
+									<Link
+										className="btn btn-outline-info"
+										to={`/trips`}
+										onClick={this.deleteTrip}
+									>
+										Delete
+									</Link>
+								</Col>
+							</Row>
 						) : (
 							<span />
 						)}

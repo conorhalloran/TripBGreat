@@ -14,14 +14,27 @@ h1 {
 	text-align: center;
 }
 
+a {
+	color: #66e2da;
+}
+a:hover {
+	color: #33dacd;
+}
+
 .TripSummary {
 	box-sizing: border-box;
 	border: 1px solid #ced4da;
 	border-radius: 0.25rem;
 	background-color: whitesmoke;
-	padding: 0.25rem;
+	padding: 0.5rem;
+	margin: 1rem;
 }
 
-.TripList {
+.TripsList {
+	justify-content: center;
+}
+
+.TripButtons {
+	margin-top: 1rem;
 	justify-content: center;
 }
