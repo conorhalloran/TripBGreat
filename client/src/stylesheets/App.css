@@ -30,6 +30,7 @@ h1 {
 
 #triplinks {
 	color: #278a83 !important;
+	text-decoration: none !important;
 }
 #triplinks:hover {
 	color: #29bcb0 !important;

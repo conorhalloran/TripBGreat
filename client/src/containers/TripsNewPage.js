@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Trip } from '../lib/tripRequests'
 import TripForm from '../components/TripForm'
+import { Container, Row, Col } from 'reactstrap'
 
 class TripsNewPage extends Component {
 	constructor(props) {
@@ -15,10 +16,16 @@ class TripsNewPage extends Component {
 
 	render() {
 		return (
-			<div className="content">
-				<h1>New Trip</h1>
-				<TripForm onSubmit={this.createTrip} />
-			</div>
+			<Container>
+				<Row>
+					<Col>
+						<div className="content">
+							<h1>New Trip</h1>
+							<TripForm onSubmit={this.createTrip} />
+						</div>
+					</Col>
+				</Row>
+			</Container>
 		)
 	}
 }
