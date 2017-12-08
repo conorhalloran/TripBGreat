@@ -5,8 +5,8 @@ User.destroy_all
 Day.destroy_all
 
 super_user = User.create(
-    first_name: 'Super',
-    last_name: 'Dude',
+    first_name: 'Conor',
+    last_name: 'Halloran',
     email: 'conor@conor.com',
     password: PASSWORD
 )
@@ -48,22 +48,14 @@ states = [
   'in_progress',
   'completed'
 ]
-# days.ago.strftime(%d/%m/%Y)
-15.times.each do
+6.times.each do
     start_date = Faker::Time.between(DateTime.now - 10, DateTime.now)
     end_date = Faker::Time.between(DateTime.now, DateTime.now + 10)
     longitude = 49.499316
     latitude = -119.593725
-    # arr = users
-    # trip_users = []
-    # rand(2..7).times.each do
-    #     usedId = arr.sample
-    #     trip_users.push(usedId)
-    #     arr.delete_if{|i|i==usedId}
-    # end
     Trip.create(
-        title: Faker::Pokemon.name,
-        description: Faker::RickAndMorty.quote,
+        title: Faker::Address.city,
+        description: Faker::MostInterestingManInTheWorld.quote,
         user_id: users.sample.id,
         location: Faker::LordOfTheRings.location,
         start_date: start_date.strftime("%d/%m/%Y"),
@@ -85,13 +77,13 @@ trips.each do |trip|
     counter = 1
     trip.duration.times.each do
     Day.create(
-        title: "Day #{counter}",
-        description: Faker::RickAndMorty.quote,
+        title: Faker::Address.city,
+        description: Faker::MostInterestingManInTheWorld.quote,
         date: trip.start_date,
         start_location: trip.location,
         start_longitude: trip.longitude,
         start_latitude: trip.latitude,
-        end_location: trip.location + "_end",
+        end_location: Faker::Address.city,
         end_longitude: trip.longitude + 1,
         end_latitude: trip.latitude + 1,
         user_id: trip.user_id,
