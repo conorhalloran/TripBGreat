@@ -24,28 +24,26 @@ class DayDetails extends Component {
 		} = this.props.day
 		return (
 			<Container>
-				<div className="content">
-					<Row className="DayDetails">
-						<Col>
-							<h1>Day Details</h1>
-						</Col>
-					</Row>
-					<Row>
-						<Col sm="5">
-							<h2>{title}</h2>
-							<p>{description}</p>
-							<p>Start Location: {start_location}</p>
-							<p>End Location: {end_location}</p>
-							<Link to={`/trips/${trip.id}`} className="btn btn-info">
-								Back to Trip
-							</Link>
-						</Col>
-						<Col sm="7">
-							{start_latitude &&
-								start_longitude && <MapGeneral day={this.props.day} />}
-						</Col>
-					</Row>
-				</div>
+				<Row className="DayDetails">
+					<Col>
+						<h1>Day Details</h1>
+					</Col>
+				</Row>
+				<Row>
+					<Col sm="5">
+						<h2>{title}</h2>
+						<p>{description}</p>
+						<p>Start Location: {start_location}</p>
+						<p>End Location: {end_location}</p>
+						<Link to={`/trips/${trip.id}`} className="btn btn-info">
+							Back to Trip
+						</Link>
+					</Col>
+					<Col sm="7">
+						{start_latitude &&
+							start_longitude && <MapGeneral day={this.props.day} />}
+					</Col>
+				</Row>
 			</Container>
 		)
 	}
