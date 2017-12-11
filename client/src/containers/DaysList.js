@@ -11,6 +11,7 @@ class DaysList extends Component {
 	}
 
 	render() {
+		const { deleteDay } = this.props
 		console.log('DaysList', this.props)
 		return (
 			<div>
@@ -23,6 +24,7 @@ class DaysList extends Component {
 							<th>Description</th>
 							<th>Start Location</th>
 							<th>End Location</th>
+							{/* <th>Remove Day</th> */}
 						</tr>
 					</thead>
 					<tbody>
@@ -34,6 +36,7 @@ class DaysList extends Component {
 									day={day}
 									index={index}
 									user={this.props.user}
+									deleteDay={deleteDay}
 									{...this.props}
 								/>
 							))}

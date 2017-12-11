@@ -26,7 +26,7 @@ const SignInForm = props => {
 					<Label htmlFor="password">Password</Label> <br />
 					<Input type="password" id="password" name="password" />
 				</FormGroup>
-				<Button className="btn btn-outline-info">Sign In</Button>
+				<Button className="btn btn-info">Sign In</Button>
 			</Form>
 		</Col>
 	)

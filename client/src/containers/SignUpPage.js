@@ -24,12 +24,14 @@ class SignUpPage extends Component {
 	render() {
 		return (
 			<Container className="SignUpPage">
-				<Row>
-					<h1>Sign Up</h1>
-				</Row>
-				<Row>
-					<SignUpForm onSubmit={this.signUpUser} />
-				</Row>
+				<div className="content">
+					<Row>
+						<h1>Sign Up</h1>
+					</Row>
+					<Row>
+						<SignUpForm onSubmit={this.signUpUser} />
+					</Row>
+				</div>
 			</Container>
 		)
 	}

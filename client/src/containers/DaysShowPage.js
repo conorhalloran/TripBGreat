@@ -20,7 +20,7 @@ class DaysShowPage extends Component {
 	render() {
 		const { user = {} } = this.props
 		return (
-			<div className="DaysShowPage">
+			<div className="content">
 				<DayDetails
 					current_user={user}
 					user={this.state.day.user}

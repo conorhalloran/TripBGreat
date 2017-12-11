@@ -12,8 +12,12 @@ import {
 	NavbarToggler,
 	NavbarBrand,
 	Nav,
-	NavItem
+	NavItem,
+	Container,
+	Row,
+	Col
 } from 'reactstrap'
+import FontAwesome from 'react-fontawesome'
 
 // PAGES
 import TripsIndexPage from './TripsIndexPage'
@@ -87,11 +91,11 @@ class App extends Component {
 							Create Trip
 						</Link>
 					</NavItem>
-					<NavItem>
+					{/* <NavItem>
 						<Link className="nav-link" to="#">
 							My Account
 						</Link>
-					</NavItem>
+					</NavItem> */}
 					<NavItem>
 						<Link className="nav-link" to="/" onClick={this.signOut}>
 							Sign out
@@ -133,13 +137,54 @@ class App extends Component {
 
 	_renderNavBar() {
 		return (
-			<Navbar color="faded" light expand="sm">
+			<Navbar dark fixed expand="sm" className="navBarHeader">
 				<NavbarToggler onClick={this.toggle} />
 				<NavbarBrand href="/">
-					<img className="logo" src={logo} alt="" /> TripBGreat
+					<img className="logo" src={logo} alt="" />
 				</NavbarBrand>
 				{this.isSignedIn() ? this._navUserSignedIn() : this._navNoUser()}
 			</Navbar>
+		)
+	}
+	_renderFooter() {
+		return (
+			<div className="footer">
+				<div className="footer-social-icons">
+					<p className="brand">©TripBGreat</p>
+					<ul className="social-icons">
+						<li>
+							<a href="" className="social-icon">
+								<FontAwesome name="facebook" />
+							</a>
+						</li>
+						<li>
+							<a href="" className="social-icon">
+								<FontAwesome name="twitter" />
+							</a>
+						</li>
+						<li>
+							<a href="" className="social-icon">
+								<iFontAwesome name="rss" />
+							</a>
+						</li>
+						<li>
+							<a href="" className="social-icon">
+								<FontAwesome name="youtube" />
+							</a>
+						</li>
+						<li>
+							<a href="" className="social-icon">
+								<FontAwesome name="linkedin" />
+							</a>
+						</li>
+						<li>
+							<a href="" className="social-icon">
+								<FontAwesome name="google-plus" />
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
 		)
 	}
 
@@ -191,6 +236,7 @@ class App extends Component {
 							<Route path="/" component={HomePage} />
 						</Switch>
 					</div>
+					{this._renderFooter()}
 				</div>
 			</Router>
 		)

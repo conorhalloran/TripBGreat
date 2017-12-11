@@ -23,12 +23,14 @@ class SignInPage extends Component {
 	render() {
 		return (
 			<Container className="SignInPage">
-				<Row>
-					<h1>Sign In</h1>
-				</Row>
-				<Row>
-					<SignInForm onSubmit={this.signInUser} />
-				</Row>
+				<div className="content">
+					<Row>
+						<h2>Sign In</h2>
+					</Row>
+					<Row>
+						<SignInForm onSubmit={this.signInUser} />
+					</Row>
+				</div>
 			</Container>
 		)
 	}

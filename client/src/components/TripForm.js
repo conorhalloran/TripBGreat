@@ -61,50 +61,44 @@ class TripForm extends React.Component {
 	render() {
 		const { title = '', description = '', location = '' } = this.props
 		return (
-			<Container>
-				<Row>
-					<Col>
-						<Form className="TripForm" onSubmit={this.handleSubmit}>
-							<FormGroup>
-								<Label for="title">Title: </Label>
-								<Input id="title" name="title" defaultValue={title} />
-							</FormGroup>
-							<FormGroup>
-								<Label for="description">Description: </Label>
-								<Input
-									type="textarea"
-									id="description"
-									name="description"
-									defaultValue={description}
-								/>
-							</FormGroup>
-							<FormGroup>
-								<Label for="dates">Trip Dates: </Label>
-								<DateRangePicker
-									displayFormat={'DD-MM-YYYY'}
-									startDate={this.state.startDate}
-									endDate={this.state.endDate}
-									onDatesChange={({ startDate, endDate }) => {
-										this.setState({ startDate, endDate })
-									}}
-									focusedInput={this.state.focusedInput}
-									onFocusChange={focusedInput =>
-										this.setState({ focusedInput })
-									}
-								/>
-							</FormGroup>
-							<FormGroup>
-								<Label for="location">Location</Label>
-								<LocationSearch
-									onPlacesChanged={this.handlePlacesChanged}
-									defaultValue={location}
-								/>
-							</FormGroup>
-							<Button className="btn btn-outline-info">Create Trip</Button>
-						</Form>
-					</Col>
-				</Row>
-			</Container>
+			<div>
+				<Form className="TripForm" onSubmit={this.handleSubmit}>
+					<FormGroup>
+						<Label for="title">Title: </Label>
+						<Input id="title" name="title" defaultValue={title} />
+					</FormGroup>
+					<FormGroup>
+						<Label for="description">Description: </Label>
+						<Input
+							type="textarea"
+							id="description"
+							name="description"
+							defaultValue={description}
+						/>
+					</FormGroup>
+					<FormGroup>
+						<Label for="dates">Trip Dates: </Label>
+						<DateRangePicker
+							displayFormat={'DD-MM-YYYY'}
+							startDate={this.state.startDate}
+							endDate={this.state.endDate}
+							onDatesChange={({ startDate, endDate }) => {
+								this.setState({ startDate, endDate })
+							}}
+							focusedInput={this.state.focusedInput}
+							onFocusChange={focusedInput => this.setState({ focusedInput })}
+						/>
+					</FormGroup>
+					<FormGroup>
+						<Label for="location">Location</Label>
+						<LocationSearch
+							onPlacesChanged={this.handlePlacesChanged}
+							defaultValue={location}
+						/>
+					</FormGroup>
+					<Button className="btn btn-info">Create Trip</Button>
+				</Form>
+			</div>
 		)
 	}
 }
