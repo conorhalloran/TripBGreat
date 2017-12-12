@@ -26,7 +26,7 @@ git@github.com:conorhalloran/TripBGreat.git
 * `db:create`
 * `db:db:migrate`
 
-	3.) Start API Server
+3.) Start API Server
 
 ```
 rails s
@@ -37,11 +37,11 @@ rails s
 * `cd ../client`
 * `yarn install`
 
-	5.) Start React.js Client:
+5.) Start React.js Client:
 
 * `yarn start`
 
-	6.) Using the App
+6.) Using the App
 
 * Navigate to http://localhost:3001/
 * To use the App and start creating trips, please create a user first.
