@@ -22,7 +22,7 @@ module V1
       if trip.save
         render json: trip
       else
-        render json: trip.errors, status: :unprocessable_entity
+        render json: { errors: trip.errors.full_messages}
       end
     end
 

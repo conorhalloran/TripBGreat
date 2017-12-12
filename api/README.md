@@ -1,24 +1,47 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+TripBGreat is a Project Management SPA specifically designed for trips.
+Functionality includes itinerary planning using location coordinates
+automatically generated with Google Maps API.
 
-Things you may want to cover:
+## TECHNOLOGIES USED:
 
-* Ruby version
+* Ruby on Rails
+* React.js
+* JWT User Authentication
+* Google Maps API
 
-* System dependencies
+## GETTING STARTED:
 
-* Configuration
+1.) Clone this repository:
 
-* Database creation
+```
+git@github.com:conorhalloran/TripBGreat.git
+```
 
-* Database initialization
+2.) Navigate to API, Bundle It and Setup Database:
 
-* How to run the test suite
+* `cd TripBGreat/api`
+* `rails bundle`
+* `db:create`
+* `db:db:migrate`
 
-* Services (job queues, cache servers, search engines, etc.)
+	3.) Start API Server
 
-* Deployment instructions
+```
+rails s
+```
 
-* ...
+4.) Navigate to Client and Install Dependencies:
+
+* `cd ../client`
+* `yarn install`
+
+	5.) Start React.js Client:
+
+* `yarn start`
+
+	6.) Using the App
+
+* Navigate to http://localhost:3001/
+* To use the App and start creating trips, please create a user first.
