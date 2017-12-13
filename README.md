@@ -16,7 +16,7 @@ automatically generated with Google Maps API.
 1.) Clone this repository:
 
 ```
-git@github.com:conorhalloran/TripBGreat.git
+git clone git@github.com:conorhalloran/TripBGreat.git
 ```
 
 2.) Navigate to API, Bundle It and Setup Database:
