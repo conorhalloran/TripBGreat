@@ -24,24 +24,21 @@ git clone git@github.com:conorhalloran/TripBGreat.git
 * `cd TripBGreat/api`
 * `rails bundle`
 * `db:create`
-* `db:db:migrate`
+* `db:migrate`
 
-3.) Start API Server
+  3.) Start API Server
 
 ```
 rails s
 ```
 
-4.) Navigate to Client and Install Dependencies:
+4.) Navigate to Client, Install Dependencies, Start React.js Client:
 
 * `cd ../client`
-* `yarn install`
+* `npm bundle`
+* `npm run start`
 
-5.) Start React.js Client:
-
-* `yarn start`
-
-6.) Using the App
+  5.) Using the App
 
 * Navigate to http://localhost:3001/
 * To use the App and start creating trips, please create a user first.
