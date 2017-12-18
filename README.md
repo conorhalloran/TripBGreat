@@ -35,8 +35,8 @@ rails s
 4.) Navigate to Client, Install Dependencies, Start React.js Client:
 
 * `cd ../client`
-* `npm bundle`
-* `npm run start`
+* `npm install`
+* `npm start`
 
   5.) Using the App
 
