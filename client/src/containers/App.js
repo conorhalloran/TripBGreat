@@ -12,10 +12,7 @@ import {
 	NavbarToggler,
 	NavbarBrand,
 	Nav,
-	NavItem,
-	Container,
-	Row,
-	Col
+	NavItem
 } from 'reactstrap'
 import FontAwesome from 'react-fontawesome'
 

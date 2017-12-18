@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import SignInForm from '../components/SignInForm'
 import { Token } from '../lib/tripRequests'
-import { Container, Row } from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap'
 
 class SignInPage extends Component {
 	constructor(props) {
@@ -25,7 +25,9 @@ class SignInPage extends Component {
 			<Container className="SignInPage">
 				<div className="content">
 					<Row>
-						<h2>Sign In</h2>
+						<Col>
+							<h2>Sign In</h2>
+						</Col>
 					</Row>
 					<Row>
 						<SignInForm onSubmit={this.signInUser} />
