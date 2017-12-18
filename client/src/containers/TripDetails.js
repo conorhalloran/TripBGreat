@@ -4,7 +4,7 @@ import MapMultiMarker from '../components/MapMultiMarker'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { Container, Row, Col, Button } from 'reactstrap'
 import DaysList from './DaysList'
-import DayForm from '../components/DayForm'
+import DayForm from './DayForm'
 
 class TripDetails extends Component {
 	constructor(props) {

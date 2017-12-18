@@ -1,16 +1,7 @@
 import React from 'react'
 import { DateRangePicker } from 'react-dates'
-import LocationSearch from './LocationSearch'
-import {
-	Button,
-	Container,
-	Row,
-	Col,
-	Form,
-	FormGroup,
-	Label,
-	Input
-} from 'reactstrap'
+import LocationSearch from '../components/LocationSearch'
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 
 class TripForm extends React.Component {
 	constructor(props) {

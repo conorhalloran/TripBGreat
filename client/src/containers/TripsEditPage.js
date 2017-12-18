@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Trip } from '../lib/tripRequests'
-import TripForm from '../components/TripForm'
+import TripForm from './TripForm'
 
 class TripsEditPage extends Component {
 	constructor(props) {
