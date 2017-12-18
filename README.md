@@ -26,19 +26,27 @@ git clone git@github.com:conorhalloran/TripBGreat.git
 * `db:create`
 * `db:migrate`
 
-  3.) Start API Server
+3.) Start API Server
 
 ```
 rails s
 ```
 
-4.) Navigate to Client, Install Dependencies, Start React.js Client:
+4.) Navigate to Client, Install Dependencies:
 
 * `cd ../client`
 * `npm install`
+
+5.) Create Client Side Environment Variables:
+
+* Duplicate the file 'example.env' and rename to just '.env'
+* In new file, insert your own Google Places API Key. This can be obtained from the following address: https://developers.google.com/places/web-service/get-api-key
+
+6.) Start React.js Client:
+
 * `npm start`
 
-  5.) Using the App
+5.) Using the App
 
 * Navigate to http://localhost:3001/
 * To use the App and start creating trips, please create a user first.
