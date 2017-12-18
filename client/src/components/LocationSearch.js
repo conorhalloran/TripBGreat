@@ -6,11 +6,11 @@ const { withScriptjs } = require('react-google-maps')
 const {
 	StandaloneSearchBox
 } = require('react-google-maps/lib/components/places/StandaloneSearchBox')
+const googleApiKey = process.env.REACT_APP_GOOGLE_API
 
 const LocationSearch = compose(
 	withProps({
-		googleMapURL:
-			'https://maps.googleapis.com/maps/api/js?key=AIzaSyBlu8Q6t2H35YrdXo8j7233c4p1sAZjuU0&v=3.exp&libraries=geometry,drawing,places',
+		googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${googleApiKey}&v=3.exp&libraries=geometry,drawing,places`,
 		loadingElement: <div style={{ height: `100%` }} />,
 		containerElement: <div style={{ height: `400px` }} />
 	}),
