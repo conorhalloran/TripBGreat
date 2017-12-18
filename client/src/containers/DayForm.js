@@ -1,5 +1,5 @@
 import React from 'react'
-import LocationSearch from './LocationSearch'
+import LocationSearch from '../components/LocationSearch'
 // import { SingleDayPicker } from 'react-dates'
 import {
 	Button,

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Trip } from '../lib/tripRequests'
-import TripForm from '../components/TripForm'
+import TripForm from './TripForm'
 import { Container, Row, Col } from 'reactstrap'
 
 class TripsNewPage extends Component {

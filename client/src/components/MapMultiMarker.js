@@ -7,7 +7,7 @@ import {
 	Marker,
 	InfoWindow
 } from 'react-google-maps'
-import { Container, Row, Col } from 'reactstrap'
+import { Container, Row } from 'reactstrap'
 
 const MyMapComponent = compose(
 	withProps({
